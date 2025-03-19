@@ -2,11 +2,9 @@ package controlador;
 
 import modelo.Client;
 import modelo.ImplementacionBD;
-import modelo.Usuario;
 import modelo.UsuarioDAO;
 import modelo.Worker;
 import vista.VentanaLogin;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Map;
@@ -18,8 +16,8 @@ public class LoginControlador {
 		VentanaLogin ven = new VentanaLogin(this);
 		ven.setVisible(true);	
 	}
-	public boolean comprobarUsuario(Client cliente){
-		return dao.comprobarUsuario(cliente);	
+	public boolean comprobarCliente(Client cliente){
+		return dao.comprobarCliente(cliente);	
 	}
 	public boolean comprobarTrabajador(Worker worker){
 		return dao.comprobarTrabajador(worker);

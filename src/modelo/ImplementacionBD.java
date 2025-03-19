@@ -25,12 +25,13 @@ public class ImplementacionBD implements UsuarioDAO{
 		// Sentencias SQL
 		
 		
-		final String SQL = "SELECT * FROM clients WHERE name_c = ? AND password_c = ?";		//Iniciar Sesión
-		final String sql1 = "SELECT * FROM workers WHERE name_w = ? AND password_w = ?"; //COMPROBARUSUARIO
-		final String sqlInsert = "INSERT INTO usuario VALUES (?,?)"; //INSERTARUSUARIO
+		final String SQLLoginClient = "SELECT * FROM clients WHERE name_c = ? AND password_c = ?";		//Iniciar Sesión
+		final String sqlLoginWorker = "SELECT * FROM workers WHERE name_w = ? AND password_w = ?"; //COMPROBARUSUARIO
+		final String sqlInsertClient = "INSERT INTO clients VALUES (?,?)"; //INSERTARCLIENTE / añadirSocio (1)
+		final String sqlInsertWorker = "INSERT INTO workers VALUES (?,?)"; //INSERTARTRABAJADOR
 		final String SQLCONSULTA = "SELECT * FROM clients"; //VISUALIZAR
 		final String SQLBORRAR = "DELETE FROM usuario WHERE nombre=?"; //BORRAR USUARIO
-		final String SQLMODIFICAR = "UPDATE usuario SET contrasena=? WHERE nombre=?"; //MODIFICAR
+		final String SQLModifyClient = "UPDATE usuario SET contrasena=? WHERE nombre=?"; //MODIFICAR
 		
 		// Para la conexi n utilizamos un fichero de configuaraci n, config que
 		// guardamos en el paquete control:
@@ -60,7 +61,7 @@ public class ImplementacionBD implements UsuarioDAO{
 			boolean existe=false;
 			this.openConnection();
 			try {
-				stmt = con.prepareStatement(SQL);
+				stmt = con.prepareStatement(SQLLoginClient);
 	            stmt.setString(1, client.getclient_name());
 	            stmt.setString(2, client.getclient_password());
 	            ResultSet resultado = stmt.executeQuery();
@@ -84,7 +85,7 @@ public class ImplementacionBD implements UsuarioDAO{
 
 			
 			try {
-				stmt = con.prepareStatement(sql1);
+				stmt = con.prepareStatement(sqlLoginWorker);
 	            stmt.setString(1, worker.getworker_name());
 	            stmt.setString(2, worker.getworker_password());
 	            ResultSet resultado = stmt.executeQuery();
