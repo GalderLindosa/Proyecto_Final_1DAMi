@@ -24,16 +24,11 @@ public class ImplementacionBD implements UsuarioDAO{
 
 		// Sentencias SQL
 		
-		final String SQL = "SELECT * FROM clients WHERE name_c = ? AND password_c = ?";		
-		final String sql1 = "SELECT * FROM workers WHERE name_w = ? AND password_w = ?"; 
-
-		
-		
-		
-		final String sqlInsert = "INSERT INTO CLIENTS VALUES (?,?,?)";
-		final String SQLCONSULTA = "SELECT * FROM usuario";
-		final String SQLBORRAR = "DELETE FROM usuario WHERE nombre=?";
-		final String SQLMODIFICAR = "UPDATE usuario SET contrasena=? WHERE nombre=?";
+		final String SQLLoginCliente = "SELECT * FROM clients WHERE id_c = ? AND password_c = ?";	//(IniciarSesion Cliente)	(Hecho)
+		final String SQLLoginTrabajador = "SELECT * FROM workers WHERE name_w = ? AND password_w = ?";  //(IniciarSesion Trabajadores) (Hecho)
+		final String sqlInsertC = "INSERT INTO CLIENTS VALUES (?,?,?)"; //(CrearCliente) (Hecho)
+		final String SQLBORRAR = "DELETE FROM product WHERE id_c=?"; //BorrarCliente
+		final String SQLMODIFICAR = "UPDATE product SET prize =? WHERE id_p =?"; //ModificarProducto
 		
 		// Para la conexi n utilizamos un fichero de configuaraci n, config que
 		// guardamos en el paquete control:
@@ -61,7 +56,7 @@ public class ImplementacionBD implements UsuarioDAO{
 			boolean existe=false;
 			this.openConnection();
 			try {
-				stmt = con.prepareStatement(SQL);
+				stmt = con.prepareStatement(SQLLoginCliente);
 	            stmt.setString(1, client.getclient_name());
 	            stmt.setString(2, client.getclient_password());
 	            ResultSet resultado = stmt.executeQuery();
@@ -85,7 +80,7 @@ public class ImplementacionBD implements UsuarioDAO{
 
 			
 			try {
-				stmt = con.prepareStatement(sql1);
+				stmt = con.prepareStatement(SQLLoginTrabajador);
 	            stmt.setString(1, worker.getworker_name());
 	            stmt.setString(2, worker.getworker_password());
 	            ResultSet resultado = stmt.executeQuery();
@@ -117,7 +112,7 @@ public class ImplementacionBD implements UsuarioDAO{
 
 			
 			try {
-				stmt = con.prepareStatement(sql1);
+				stmt = con.prepareStatement(sqlInsertC);
 	            stmt.setInt(1, client.getclient_id());
 	            ResultSet resultado = stmt.executeQuery();
 
