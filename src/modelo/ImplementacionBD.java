@@ -24,12 +24,13 @@ public class ImplementacionBD implements UsuarioDAO{
 
 		// Sentencias SQL
 		
-		final String SQL = "SELECT * FROM usuario WHERE nombre = ? AND contrasena = ?";		
-		final String sql1 = "SELECT * FROM usuario WHERE nombre = ?";
-		final String sqlInsert = "INSERT INTO usuario VALUES (?,?)";
-		final String SQLCONSULTA = "SELECT * FROM usuario";
-		final String SQLBORRAR = "DELETE FROM usuario WHERE nombre=?";
-		final String SQLMODIFICAR = "UPDATE usuario SET contrasena=? WHERE nombre=?";
+		
+		final String SQL = "SELECT * FROM clients WHERE name_c = ? AND password_c = ?";		//Iniciar Sesión
+		final String sql1 = "SELECT * FROM workers WHERE name_w = ? AND password_w = ?"; //COMPROBARUSUARIO
+		final String sqlInsert = "INSERT INTO usuario VALUES (?,?)"; //INSERTARUSUARIO
+		final String SQLCONSULTA = "SELECT * FROM clients"; //VISUALIZAR
+		final String SQLBORRAR = "DELETE FROM usuario WHERE nombre=?"; //BORRAR USUARIO
+		final String SQLMODIFICAR = "UPDATE usuario SET contrasena=? WHERE nombre=?"; //MODIFICAR
 		
 		// Para la conexi n utilizamos un fichero de configuaraci n, config que
 		// guardamos en el paquete control:
@@ -54,14 +55,14 @@ public class ImplementacionBD implements UsuarioDAO{
 
 		
 
-		public boolean comprobarUsuario(Usuario usuario){
+		public boolean comprobarCliente(Client client){
 			// Abrimos la conexion
 			boolean existe=false;
 			this.openConnection();
 			try {
 				stmt = con.prepareStatement(SQL);
-	            stmt.setString(1, usuario.getNombre());
-	            stmt.setString(2, usuario.getContrasena());
+	            stmt.setString(1, client.getclient_name());
+	            stmt.setString(2, client.getclient_password());
 	            ResultSet resultado = stmt.executeQuery();
 
 	            //Si hay un resultado, el usuario existe
@@ -76,7 +77,7 @@ public class ImplementacionBD implements UsuarioDAO{
 	        }
 	        return existe;
 	    }
-		public boolean comprobarUsuario1(Usuario usuario){
+		public boolean comprobarTrabajador(Worker worker){
 			// Abrimos la conexion
 			boolean existe=false;
 			this.openConnection();
@@ -84,7 +85,8 @@ public class ImplementacionBD implements UsuarioDAO{
 			
 			try {
 				stmt = con.prepareStatement(sql1);
-	            stmt.setString(1, usuario.getNombre());
+	            stmt.setString(1, worker.getworker_name());
+	            stmt.setString(2, worker.getworker_password());
 	            ResultSet resultado = stmt.executeQuery();
 
 	            //Si hay un resultado, el usuario existe
@@ -104,7 +106,7 @@ public class ImplementacionBD implements UsuarioDAO{
 	        return existe;
 	    }
 		
-		public boolean insertarUsuario(Usuario usuario) {
+		/* public boolean insertarUsuario(Usuario usuario) {
 			// TODO Auto-generated method stub
 			boolean ok=false;
 			if (!comprobarUsuario1(usuario))
@@ -129,7 +131,7 @@ public class ImplementacionBD implements UsuarioDAO{
 				return ok;
 			
 			
-		}
+		} */
 		public boolean actualizarUsuario(Usuario usuario) {
 			// TODO Auto-generated method stub
 			boolean ok=false;

@@ -1,8 +1,10 @@
 package controlador;
 
+import modelo.Client;
 import modelo.ImplementacionBD;
 import modelo.Usuario;
 import modelo.UsuarioDAO;
+import modelo.Worker;
 import vista.VentanaLogin;
 
 import java.awt.event.ActionEvent;
@@ -16,11 +18,11 @@ public class LoginControlador {
 		VentanaLogin ven = new VentanaLogin(this);
 		ven.setVisible(true);	
 	}
-	public boolean comprobarUsuario(Usuario usuario){
-		return dao.comprobarUsuario(usuario);	
+	public boolean comprobarUsuario(Client cliente){
+		return dao.comprobarUsuario(cliente);	
 	}
-	public boolean insertarUsuario(Usuario usuario) {
-		return dao.insertarUsuario(usuario);
+	public boolean comprobarTrabajador(Worker worker){
+		return dao.comprobarTrabajador(worker);
 	}
 	public Map<String, Usuario> consultaUsuarios() {
 		// TODO Auto-generated method stub
