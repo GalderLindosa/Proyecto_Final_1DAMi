@@ -1,4 +1,4 @@
-package clases;
+package modelo;
 
 public class Product {
 	private String product_name;

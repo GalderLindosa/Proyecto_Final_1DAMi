@@ -1,4 +1,4 @@
-package clases;
+package modelo;
 
 public class Shop {
 	private String opening_hours;

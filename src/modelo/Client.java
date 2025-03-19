@@ -1,4 +1,4 @@
-package clases;
+package modelo;
 
 public class Client {
 	private String client_name;

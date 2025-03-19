@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import java.awt.Toolkit;
 
 public class SignUpClient extends JFrame implements ActionListener{
 

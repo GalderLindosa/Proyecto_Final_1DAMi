@@ -1,4 +1,4 @@
-package clases;
+package modelo;
 
 public class Worker {
 	private String id_trabajador;
