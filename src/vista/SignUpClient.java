@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controlador.LoginControlador;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -13,6 +16,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import modelo.Client;
 import javax.swing.JButton;
 import java.awt.Toolkit;
 
@@ -25,8 +29,11 @@ public class SignUpClient extends JFrame implements ActionListener{
 	private JLabel NameLabel;
 	private JLabel PasswordLabel;
 	private JButton CompleteSIgnUpButton;
+	private LoginControlador cont;
+	private JLabel creado;
 
-	public SignUpClient() {
+	public SignUpClient(LoginControlador cont) {
+		this.cont=cont;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 628, 433);
 		contentPane = new JPanel();
@@ -65,11 +72,25 @@ public class SignUpClient extends JFrame implements ActionListener{
 		CompleteSIgnUpButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		CompleteSIgnUpButton.setBounds(209, 331, 156, 21);
 		contentPane.add(CompleteSIgnUpButton);
+		CompleteSIgnUpButton.addActionListener(this);
+		
+		creado = new JLabel("");
+		creado.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		creado.setHorizontalAlignment(SwingConstants.CENTER);
+		creado.setBounds(212, 362, 166, 34);
+		contentPane.add(creado);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(e.getSource()==CompleteSIgnUpButton) {
+			if(cont.insertClient(new Client(introduceNameTextField.getText(), new String(IntroducePasswordTextField.getPassword())))) {
+			creado.setText("Cliente creado");	
+			}
+			else {
+				creado.setText("No se ha creado");
+			}
+		}
 	}
 }

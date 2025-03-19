@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controlador.LoginControlador;
+
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
@@ -18,8 +21,10 @@ public class VentanaLogingClient extends JFrame implements ActionListener{
 	private JLabel QuestionLabel;
 	private JButton SignUpButton;
 	private JButton SignInButton;
+	private LoginControlador cont;
 	
-	public VentanaLogingClient() {
+	public VentanaLogingClient(LoginControlador cont) {
+		this.cont=cont;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -52,7 +57,7 @@ public class VentanaLogingClient extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource()==SignUpButton) {
-			SignUpClient v= new SignUpClient();
+			SignUpClient v= new SignUpClient(cont);
 			v.setVisible(true);
 			dispose();
 		}

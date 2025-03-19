@@ -3,12 +3,11 @@ package modelo;
 public class Client {
 	private String client_name;
 	private String client_password;
-	private String client_id;
+	private int client_id;
 	
-	public Client(String cliente, String passwd, String id) {
+	public Client(String cliente, String passwd) {
 		this.client_name=cliente;
 		this.client_password=passwd;
-		this.client_id=id;
 	}
 
 	public String getclient_name() {
@@ -27,11 +26,11 @@ public class Client {
 		this.client_password = client_password;
 	}
 
-	public String getclient_id() {
+	public int getclient_id() {
 		return client_id;
 	}
 
-	public void setclient_id(String client_id) {
+	public void setclient_id(int client_id) {
 		this.client_id = client_id;
 	}
 

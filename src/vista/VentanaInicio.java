@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controlador.LoginControlador;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -19,27 +22,12 @@ public class VentanaInicio extends JFrame implements ActionListener{
 	private JLabel TextLabel1;
 	private JButton BotonLoginWorker;
 	private JButton BotonLoginClient;
+	private LoginControlador cont;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaInicio frame = new VentanaInicio();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
-	public VentanaInicio() {
+
+	public VentanaInicio(LoginControlador cont) {
+		this.cont=cont;
 		setTitle("Pagina Inicio");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 517, 463);
@@ -76,7 +64,7 @@ public class VentanaInicio extends JFrame implements ActionListener{
 			dispose();
 		}
 		if(e.getSource()==BotonLoginClient) {
-			VentanaLogingClient v= new VentanaLogingClient();
+			VentanaLogingClient v= new VentanaLogingClient(cont);
 			v.setVisible(true);
 			dispose();
 		}

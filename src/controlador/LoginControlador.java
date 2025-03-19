@@ -1,9 +1,12 @@
 package controlador;
 
 import modelo.ImplementacionBD;
-import modelo.Usuario;
 import modelo.UsuarioDAO;
-import vista.VentanaLogin;
+import modelo.Worker;
+import vista.VentanaInicio;
+import vista.VentanaLogingClient;
+import vista.VentanaLogingWorker;
+import modelo.Client;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,23 +16,20 @@ public class LoginControlador {
 	UsuarioDAO dao = new ImplementacionBD();
 	
 	public void visualizarPantalla() {
-		VentanaLogin ven = new VentanaLogin(this);
+		VentanaInicio ven = new VentanaInicio(this);
 		ven.setVisible(true);	
 	}
-	public boolean comprobarUsuario(Usuario usuario){
-		return dao.comprobarUsuario(usuario);	
-	}
-	public boolean insertarUsuario(Usuario usuario) {
-		return dao.insertarUsuario(usuario);
-	}
-	public Map<String, Usuario> consultaUsuarios() {
-		// TODO Auto-generated method stub
-		return dao.consultaUsuarios();
-	}
-	public boolean borrarUsuario(String usuario) {
-		return dao.borrarUsuario(usuario);
+	
+	public boolean insertClient(Client client) {
+		return dao.insertClient(client);
 	}
 	
+	public boolean comprobarTrabajador(Worker worker) {
+		return dao.comprobarTrabajador(worker);
+	}
 
+	public boolean comprobarCliente(Client client) {
+		return dao.comprobarCliente(client);
+	}
 
 }

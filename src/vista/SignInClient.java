@@ -10,15 +10,24 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class SignInClient extends JFrame {
+import controlador.LoginControlador;
+
+public class SignInClient extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
 	private JTextField IDField;
 	private JTextField PasswordField;
+	private JButton SignInClient;
+	private LoginControlador cont;
+	private JLabel SignInLabel;
+	private JLabel WriteIDLabel;
+	private JLabel WritePasswordLabel;
 
-
-	public SignInClient() {
+	public SignInClient(LoginControlador cont) {
+		this.cont=cont;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -27,18 +36,18 @@ public class SignInClient extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel SignInLabel = new JLabel("Sign In");
+		SignInLabel = new JLabel("Sign In");
 		SignInLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		SignInLabel.setBounds(132, 22, 163, 28);
 		contentPane.add(SignInLabel);
 		
-		JLabel WriteIDLabel = new JLabel("Introduce your client ID");
+		WriteIDLabel = new JLabel("Introduce your client ID");
 		WriteIDLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		WriteIDLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		WriteIDLabel.setBounds(132, 60, 176, 32);
 		contentPane.add(WriteIDLabel);
 		
-		JLabel WritePasswordLabel = new JLabel("Introduce your password");
+		WritePasswordLabel = new JLabel("Introduce your password");
 		WritePasswordLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		WritePasswordLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		WritePasswordLabel.setBounds(113, 142, 217, 32);
@@ -54,9 +63,17 @@ public class SignInClient extends JFrame {
 		contentPane.add(PasswordField);
 		PasswordField.setColumns(10);
 		
-		JButton SignInClient = new JButton("Sign In");
+		SignInClient = new JButton("Sign In");
 		SignInClient.setBounds(172, 232, 85, 21);
 		contentPane.add(SignInClient);
+		SignInClient.addActionListener(this);
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
