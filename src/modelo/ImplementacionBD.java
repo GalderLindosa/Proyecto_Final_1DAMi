@@ -30,6 +30,12 @@ public class ImplementacionBD implements UsuarioDAO{
 		final String SQLBORRARProducto = "DELETE FROM client WHERE id_c=?"; //BorrarCliente
 		final String SQLDeleteProduct = "UPDATE product SET prize =? WHERE id_p =?"; //ModificarProducto 
 		
+		/*Cliente tiene la posibilidad de ver y comprar producto, ambas se separan en un boton cada uno, la cual manda cada una a un dialog
+		 En el apartado de comprar producto se va a usar el procedimiento almacenado que es obligatorio usar en el reto.
+		 Los trabajadores tendran la oportunidad de modificar precio del producto y elminiar el producto, siempre cuando hayan iniciado sesion 
+		 desde el apartado que les pertenece. La unica diferencia que hay a la hora 
+		 */
+		
 		// Para la conexi n utilizamos un fichero de configuaraci n, config que
 		// guardamos en el paquete control:
 		public ImplementacionBD() {
@@ -132,7 +138,7 @@ public class ImplementacionBD implements UsuarioDAO{
 	        return existe;
 	    }
 		
-		public boolean insertClient(Client client) {
+		public boolean insertClient(Client client) { //añadirTrabajador (1)
 			// TODO Auto-generated method stub
 			boolean ok=false;
 			if (!checkClient2(client))
