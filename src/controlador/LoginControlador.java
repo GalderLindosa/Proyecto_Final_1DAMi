@@ -1,6 +1,7 @@
 package controlador;
 
 import modelo.ImplementacionBD;
+import modelo.Product;
 import modelo.UsuarioDAO;
 import modelo.Worker;
 import vista.VentanaInicio;
@@ -30,6 +31,10 @@ public class LoginControlador {
 
 	public boolean comprobarCliente(Client client) {
 		return dao.comprobarCliente(client);
+	}
+	
+	public boolean borrarProducto(Product producto) {
+		return dao.borrarProducto(producto);
 	}
 
 }

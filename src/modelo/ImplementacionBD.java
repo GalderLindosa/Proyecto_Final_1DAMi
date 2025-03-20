@@ -26,9 +26,9 @@ public class ImplementacionBD implements UsuarioDAO{
 		
 		final String SQLLoginCliente = "SELECT * FROM clients WHERE id_c = ? AND password_c = ?";	//(IniciarSesion Cliente)	(Hecho)
 		final String SQLLoginTrabajador = "SELECT * FROM workers WHERE name_w = ? AND password_w = ?";  //(IniciarSesion Trabajadores) (Hecho)
-		final String sqlInsertC = "INSERT INTO CLIENTS VALUES (?,?,?)"; //(CrearCliente) (Hecho)
-		final String SQLBORRAR = "DELETE FROM product WHERE id_c=?"; //BorrarCliente
-		final String SQLMODIFICAR = "UPDATE product SET prize =? WHERE id_p =?"; //ModificarProducto
+		final String sqlInsertClient = "INSERT INTO CLIENTS VALUES (?,?,?)"; //(CrearCliente) (Hecho)
+		final String SQLBORRARProducto = "DELETE FROM client WHERE id_c=?"; //BorrarCliente
+		final String SQLDeleteProduct = "UPDATE product SET prize =? WHERE id_p =?"; //ModificarProducto 
 		
 		// Para la conexi n utilizamos un fichero de configuaraci n, config que
 		// guardamos en el paquete control:
@@ -73,11 +73,12 @@ public class ImplementacionBD implements UsuarioDAO{
 	        }
 	        return existe;
 	    }
+		
 		public boolean comprobarTrabajador(Worker worker){
 			// Abrimos la conexion
 			boolean existe=false;
 			this.openConnection();
-
+			
 			
 			try {
 				stmt = con.prepareStatement(SQLLoginTrabajador);
@@ -103,8 +104,6 @@ public class ImplementacionBD implements UsuarioDAO{
 	    }
 		
 		
-		
-		
 		public boolean checkClient2(Client client){
 			// Abrimos la conexion
 			boolean existe=false;
@@ -112,7 +111,7 @@ public class ImplementacionBD implements UsuarioDAO{
 
 			
 			try {
-				stmt = con.prepareStatement(sqlInsertC);
+				stmt = con.prepareStatement(sqlInsertClient);
 	            stmt.setInt(1, client.getclient_id());
 	            ResultSet resultado = stmt.executeQuery();
 
@@ -142,7 +141,7 @@ public class ImplementacionBD implements UsuarioDAO{
 				try {
 					// Preparamos la sentencia stmt con la conexion y sentencia sql correspondiente
 	
-					stmt = con.prepareStatement(sqlInsert);
+					stmt = con.prepareStatement(sqlInsertClient);
 					stmt.setString(2, client.getclient_name());
 					stmt.setString(3, client.getclient_password());
 					stmt.setInt(1, client.getclient_id());
@@ -163,7 +162,7 @@ public class ImplementacionBD implements UsuarioDAO{
 		
 		
 		
-		public boolean borrarUsuario(String usuario) {
+		public boolean borrarProducto(Product producto) {
 			// TODO Auto-generated method stub
 			boolean ok=false;
 			
@@ -171,12 +170,18 @@ public class ImplementacionBD implements UsuarioDAO{
 				try {
 					// Preparamos la sentencia stmt con la conexion y sentencia sql correspondiente
 	
-					stmt = con.prepareStatement(SQLBORRAR);
-					stmt.setString(1, usuario);
+					stmt = con.prepareStatement(SQLDeleteProduct);
+					stmt.setString(1, producto.getproduct_id());
 					if (stmt.executeUpdate()>0) {
 						ok=true;
 					}
 					
+				/*	private String product_name;
+					private double price;
+					private int stock;
+					private Product_Category category;
+					private String product_id;
+				*/
 		            stmt.close();
 		            con.close();
 				  } catch (SQLException e) {
