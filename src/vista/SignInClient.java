@@ -14,17 +14,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import controlador.LoginControlador;
+import modelo.Client;
+import javax.swing.JPasswordField;
 
 public class SignInClient extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
 	private JTextField IDField;
-	private JTextField PasswordField;
 	private JButton SignInClient;
 	private LoginControlador cont;
 	private JLabel SignInLabel;
 	private JLabel WriteIDLabel;
 	private JLabel WritePasswordLabel;
+	private JPasswordField passwordField;
+	private JLabel lblNewLabel;
 
 	public SignInClient(LoginControlador cont) {
 		this.cont=cont;
@@ -35,45 +38,56 @@ public class SignInClient extends JFrame implements ActionListener{
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		SignInLabel = new JLabel("Sign In");
 		SignInLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		SignInLabel.setBounds(132, 22, 163, 28);
 		contentPane.add(SignInLabel);
-		
+
 		WriteIDLabel = new JLabel("Introduce your client ID");
 		WriteIDLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		WriteIDLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		WriteIDLabel.setBounds(132, 60, 176, 32);
 		contentPane.add(WriteIDLabel);
-		
+
 		WritePasswordLabel = new JLabel("Introduce your password");
 		WritePasswordLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		WritePasswordLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		WritePasswordLabel.setBounds(113, 142, 217, 32);
 		contentPane.add(WritePasswordLabel);
-		
+
 		IDField = new JTextField();
 		IDField.setBounds(162, 112, 96, 19);
 		contentPane.add(IDField);
 		IDField.setColumns(10);
-		
-		PasswordField = new JTextField();
-		PasswordField.setBounds(162, 184, 96, 19);
-		contentPane.add(PasswordField);
-		PasswordField.setColumns(10);
-		
+
 		SignInClient = new JButton("Sign In");
 		SignInClient.setBounds(172, 232, 85, 21);
 		contentPane.add(SignInClient);
 		SignInClient.addActionListener(this);
+
+		passwordField = new JPasswordField();
+		passwordField.setBounds(162, 192, 96, 19);
+		contentPane.add(passwordField);
+		
+		lblNewLabel = new JLabel("");
+		lblNewLabel.setBounds(25, 97, 96, 28);
+		contentPane.add(lblNewLabel);
 	}
 
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(e.getSource()==SignInClient) {
+			if(cont.comprobarCliente(new Client (new String(passwordField.getPassword()), Integer.parseInt(IDField.getText())))){
+				OpcionesCliente v= new OpcionesCliente();
+				v.setVisible(true);
+				dispose();
+			}
+			else {
+				lblNewLabel.setText("ERROR AL INICIAR SESION");
+			}
+		}
 	}
-
 }

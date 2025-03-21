@@ -10,6 +10,11 @@ public class Worker {
 		this.worker_password=cont;
 		this.id_trabajador=id;
 	}
+	
+	public Worker ( String cont, String id) {
+		this.worker_password=cont;
+		this.id_trabajador=id;
+	}
 
 	public String getId_trabajador() {
 		return id_trabajador;

@@ -62,7 +62,7 @@ public class VentanaLogingClient extends JFrame implements ActionListener{
 			dispose();
 		}
 		if(e.getSource()==SignInButton) {
-			SignInClient v= new SignInClient();
+			SignInClient v= new SignInClient(cont);
 			v.setVisible(true);
 			dispose();
 		}

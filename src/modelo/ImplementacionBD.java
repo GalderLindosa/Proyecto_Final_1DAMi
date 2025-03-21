@@ -24,8 +24,8 @@ public class ImplementacionBD implements UsuarioDAO{
 
 		// Sentencias SQL
 		
-		final String SQL = "SELECT * FROM clients WHERE name_c = ? AND password_c = ?";		
-		final String sql1 = "SELECT * FROM workers WHERE name_w = ? AND password_w = ?"; 
+		final String SQL = "SELECT * FROM clients WHERE ID_C = ? AND PASSWORD_C = ?";		
+		final String sql1 = "SELECT * FROM workers WHERE id_w = ? AND password_w = ?"; 
 
 		
 		
@@ -62,7 +62,7 @@ public class ImplementacionBD implements UsuarioDAO{
 			this.openConnection();
 			try {
 				stmt = con.prepareStatement(SQL);
-	            stmt.setString(1, client.getclient_name());
+	            stmt.setInt(1, client.getclient_id());
 	            stmt.setString(2, client.getclient_password());
 	            ResultSet resultado = stmt.executeQuery();
 
@@ -86,7 +86,7 @@ public class ImplementacionBD implements UsuarioDAO{
 			
 			try {
 				stmt = con.prepareStatement(sql1);
-	            stmt.setString(1, worker.getworker_name());
+	            stmt.setString(1, worker.getId_trabajador());
 	            stmt.setString(2, worker.getworker_password());
 	            ResultSet resultado = stmt.executeQuery();
 

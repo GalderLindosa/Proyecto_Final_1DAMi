@@ -10,6 +10,11 @@ public class Client {
 		this.client_password=passwd;
 	}
 
+	public Client (String passwd, int id) {
+		this.client_password=passwd;
+		this.client_id=id;
+	}
+	
 	public String getclient_name() {
 		return client_name;
 	}
