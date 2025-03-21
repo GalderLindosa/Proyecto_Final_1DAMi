@@ -26,12 +26,11 @@ public class ImplementacionBD implements UsuarioDAO{
 		
 		final String SQL = "SELECT * FROM clients WHERE ID_C = ? AND PASSWORD_C = ?";		
 		final String sql1 = "SELECT * FROM workers WHERE id_w = ? AND password_w = ?"; 
-
+		final String SQLDeleteProduct = "UPDATE product SET prize =? WHERE id_p =?"; //ModificarProducto 		
 		
 		
-		
-		final String sqlInsert = "INSERT INTO CLIENTS VALUES (?,?,?)";
-		final String SQLCONSULTA = "SELECT * FROM usuario";
+		final String sqlInsert = "INSERT INTO CLIENTS VALUES (?,?)";
+		final String SQLCONSULTA = "SELECT * FROM products";
 		final String SQLBORRAR = "DELETE FROM usuario WHERE nombre=?";
 		final String SQLMODIFICAR = "UPDATE usuario SET contrasena=? WHERE nombre=?";
 		
@@ -78,6 +77,7 @@ public class ImplementacionBD implements UsuarioDAO{
 	        }
 	        return existe;
 	    }
+
 		public boolean comprobarTrabajador(Worker worker){
 			// Abrimos la conexion
 			boolean existe=false;
@@ -106,10 +106,7 @@ public class ImplementacionBD implements UsuarioDAO{
 
 	        return existe;
 	    }
-		
-		
-		
-		
+				
 		public boolean checkClient2(Client client){
 			// Abrimos la conexion
 			boolean existe=false;
@@ -150,7 +147,6 @@ public class ImplementacionBD implements UsuarioDAO{
 					stmt = con.prepareStatement(sqlInsert);
 					stmt.setString(2, client.getclient_name());
 					stmt.setString(3, client.getclient_password());
-					stmt.setInt(1, client.getclient_id());
 					if (stmt.executeUpdate()>0) {
 						ok=true;
 					}
@@ -166,7 +162,60 @@ public class ImplementacionBD implements UsuarioDAO{
 			
 		}
 		
+		public Map<String, Product> MostrarProducto() {
+			// TODO Auto-generated method stub
+			
+			ResultSet rs = null;
+				Product producto;
+					Map<String, Product> productos = new TreeMap<>();
+
+			// Abrimos la conexion
+			this.openConnection();
+
+			try {
+				stmt = con.prepareStatement(SQLCONSULTA);
+
+				rs = stmt.executeQuery();
+
+				// Leemos de uno en uno
+				while (rs.next()) {
+					producto = new Product();
+					producto.setproduct_name(rs.getString("NAME_P"));
+					producto.setprice(rs.getDouble("PRIZE"));
+					producto.setproduct_id(rs.getString("ID_P"));
+					producto.setStock(rs.getInt("STOCK"));
+					productos.put(producto.getproduct_name(), producto);
+				}
+				rs.close();
+	            stmt.close();
+	            con.close();
+			} catch (SQLException e) {
+				System.out.println("Error de SQL");
+				e.printStackTrace();
+			}
+			return productos;
+
+		}	
 		
+		public boolean modificarPrecio(Product producto) { //MODIFICAR
+			// TODO Auto-generated method stub
+			boolean ok=false;
+				this.openConnection();
+				try {
+					// Preparamos la sentencia stmt con la conexion y sentencia sql correspondiente
+					stmt = con.prepareStatement(SQLDeleteProduct);
+					stmt.setString(2, producto.getproduct_id());
+					stmt.setDouble(1, producto.getprice());
+					if (stmt.executeUpdate()>0) {
+						ok=true;
+					}
+		            stmt.close();
+		            con.close();
+				  } catch (SQLException e) {
+		             System.out.println("Error al verificar credenciales: " + e.getMessage());
+		        }
+				return ok;						
+		}
 		
 		public boolean borrarUsuario(String usuario) {
 			// TODO Auto-generated method stub

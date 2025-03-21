@@ -28,6 +28,7 @@ public class SignInClient extends JFrame implements ActionListener{
 	private JLabel WritePasswordLabel;
 	private JPasswordField passwordField;
 	private JLabel lblNewLabel;
+	int id;
 
 	public SignInClient(LoginControlador cont) {
 		this.cont=cont;
@@ -81,7 +82,8 @@ public class SignInClient extends JFrame implements ActionListener{
 		// TODO Auto-generated method stub
 		if(e.getSource()==SignInClient) {
 			if(cont.comprobarCliente(new Client (new String(passwordField.getPassword()), Integer.parseInt(IDField.getText())))){
-				OpcionesCliente v= new OpcionesCliente();
+				id=Integer.parseInt(IDField.getText());
+				OpcionesCliente v= new OpcionesCliente(cont, id);
 				v.setVisible(true);
 				dispose();
 			}

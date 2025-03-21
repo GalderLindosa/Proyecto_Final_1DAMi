@@ -14,6 +14,11 @@ public class Client {
 		this.client_password=passwd;
 		this.client_id=id;
 	}
+
+	public Client () {
+		this.client_password="";
+		this.client_id=0;
+	}
 	
 	public String getclient_name() {
 		return client_name;
@@ -41,8 +46,7 @@ public class Client {
 
 	@Override
 	public String toString() {
-		return "Cliente [client_name=" + client_name + ", client_password=" + client_password + ", client_id=" + client_id
-				+ "]";
+		return "Bienvenido " + client_name;
 	}
 	
 }

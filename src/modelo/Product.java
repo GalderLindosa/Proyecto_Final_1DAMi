@@ -15,7 +15,13 @@ public class Product {
 		this.category=type;
 	}
 
-
+	public Product() {
+		this.product_name="";
+		this.product_id="";
+		this.price=0;
+		this.stock=0;
+		this.category=category;
+	}
 
 	public String getproduct_name() {
 		return product_name;
@@ -69,8 +75,7 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return "Producto [product_name=" + product_name + ", price=" + price + ", stock=" + stock + ", category=" + category
-				+ ", product_id=" + product_id + "]";
+		return  " price: " + price + ", stock: " + stock + ", category : " + category + "id : " + product_id + "]";
 	}
 
 
