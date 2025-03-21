@@ -27,7 +27,7 @@ public class ImplementacionBD implements UsuarioDAO{
 		final String SQLLoginCliente = "SELECT * FROM clients WHERE id_c = ? AND password_c = ?";	//(IniciarSesion Cliente)	(Hecho)
 		final String SQLLoginTrabajador = "SELECT * FROM workers WHERE name_w = ? AND password_w = ?";  //(IniciarSesion Trabajadores) (Hecho)
 		final String sqlInsertClient = "INSERT INTO CLIENTS VALUES (?,?,?)"; //(CrearCliente) (Hecho)
-		final String SQLBORRARProducto = "DELETE FROM client WHERE id_c=?"; //BorrarCliente
+		final String SQLDeleteCliente = "DELETE FROM client WHERE id_c=?"; //BorrarCliente
 		final String SQLDeleteProduct = "UPDATE product SET prize =? WHERE id_p =?"; //ModificarProducto 
 		
 		/*Cliente tiene la posibilidad de ver y comprar producto, ambas se separan en un boton cada uno, la cual manda cada una a un dialog
@@ -163,10 +163,29 @@ public class ImplementacionBD implements UsuarioDAO{
 			}
 				return ok;
 			
-			
 		}
 		
-		
+		public boolean modificarPrecio(Product producto) { //MODIFICAR
+			// TODO Auto-generated method stub
+			boolean ok=false;
+			
+				this.openConnection();
+				try {
+					// Preparamos la sentencia stmt con la conexion y sentencia sql correspondiente
+	
+					stmt = con.prepareStatement(SQLDeleteProduct);
+					stmt.setString(2, producto.getproduct_id());
+					stmt.setDouble(1, producto.getprice());
+					if (stmt.executeUpdate()>0) {
+						ok=true;
+					}
+		            stmt.close();
+		            con.close();
+				  } catch (SQLException e) {
+		             System.out.println("Error al verificar credenciales: " + e.getMessage());
+		        }
+				return ok;						
+		}
 		
 		public boolean borrarProducto(Product producto) {
 			// TODO Auto-generated method stub

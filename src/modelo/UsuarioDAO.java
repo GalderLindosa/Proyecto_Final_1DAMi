@@ -7,4 +7,5 @@ public interface UsuarioDAO {
 	public boolean comprobarTrabajador(Worker worker);
 	public boolean insertClient(Client client);
 	public boolean borrarProducto(Product producto);
+	
 }
