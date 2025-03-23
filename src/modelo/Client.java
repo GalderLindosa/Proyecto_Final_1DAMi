@@ -1,9 +1,13 @@
 package modelo;
 
+import java.util.ArrayList;
+
 public class Client {
 	private String client_name;
 	private String client_password;
 	private int client_id;
+	private ArrayList <Buys> compras;
+
 	
 	public Client(String cliente, String passwd) {
 		this.client_name=cliente;
@@ -38,6 +42,14 @@ public class Client {
 	public String toString() {
 		return "Cliente [client_name=" + client_name + ", client_password=" + client_password + ", client_id=" + client_id
 				+ "]";
+	}
+
+	public ArrayList <Buys> getCompras() {
+		return compras;
+	}
+
+	public void setCompras(ArrayList <Buys> compras) {
+		this.compras = compras;
 	}
 	
 }

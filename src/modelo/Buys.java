@@ -10,6 +10,14 @@ public class Buys {
 		this.buying_date=fecha;
 		this.amount=amount;
 	}
+	
+	
+
+	public Buys() {
+		
+	}
+
+
 
 	public LocalDate getBuying_date() {
 		return buying_date;

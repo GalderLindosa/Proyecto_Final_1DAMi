@@ -27,6 +27,8 @@ public class ImplementacionBD implements UsuarioDAO{
 		final String SQLLoginCliente = "SELECT * FROM clients WHERE id_c = ? AND password_c = ?";	//(IniciarSesion Cliente)	(Hecho)
 		final String SQLLoginTrabajador = "SELECT * FROM workers WHERE name_w = ? AND password_w = ?";  //(IniciarSesion Trabajadores) (Hecho)
 		final String sqlInsertClient = "INSERT INTO CLIENTS VALUES (?,?,?)"; //(CrearCliente) (Hecho)
+		final String SQLMostrarCompras ="SELECT BUYING_DATE, AMOUNT, CLIENTS.NAME_C FROM BUYS JOIN CLIENTS ON BUYS.ID_C = CLIENTS.ID_C";
+		//seria con una join
 		final String SQLDeleteCliente = "DELETE FROM client WHERE id_c=?"; //BorrarCliente
 		final String SQLDeleteProduct = "UPDATE product SET prize =? WHERE id_p =?"; //ModificarProducto 
 		
@@ -119,6 +121,7 @@ public class ImplementacionBD implements UsuarioDAO{
 			try {
 				stmt = con.prepareStatement(sqlInsertClient);
 	            stmt.setInt(1, client.getclient_id());
+	            stmt.setString(1,client.getclient_password());
 	            ResultSet resultado = stmt.executeQuery();
 
 	            //Si hay un resultado, el usuario existe
@@ -137,6 +140,7 @@ public class ImplementacionBD implements UsuarioDAO{
 
 	        return existe;
 	    }
+		
 		
 		public boolean insertClient(Client client) { //añadirTrabajador (1)
 			// TODO Auto-generated method stub
@@ -163,6 +167,40 @@ public class ImplementacionBD implements UsuarioDAO{
 			}
 				return ok;
 			
+		}
+		
+		public Map<String,Buys> mostrarCompras() { //visualizar
+			// TODO Auto-generated method stub
+			
+			ResultSet rs = null;
+			Buys compra;
+			Map<String, Buys> compras = new TreeMap<>();
+
+			// Abrimos la conexi n
+			this.openConnection();
+
+			try {
+				stmt = con.prepareStatement(SQLMostrarCompras);
+
+				rs = stmt.executeQuery();
+
+				// Leemos de uno en uno
+				while (rs.next()) {
+		            compra = new Buys();  
+		            compra.setBuying_date(rs.getDate("Fecha_Compra").toLocalDate());
+		            compra.setAmount(rs.getInt("Cantidad"));
+		            compras.put(rs.getString("Nombre"), compra);
+		        // unica alternativa que he conseguido por parte de la IA,ha sido claude la que me ha dado la solucion
+				}
+				rs.close();
+	            stmt.close();
+	            con.close();
+			} catch (SQLException e) {
+				System.out.println("Error de SQL");
+				e.printStackTrace();
+			}
+			return compras;
+
 		}
 		
 		public boolean modificarPrecio(Product producto) { //MODIFICAR
