@@ -7,6 +7,7 @@ import modelo.Worker;
 import vista.VentanaInicio;
 import vista.VentanaLogingClient;
 import vista.VentanaLogingWorker;
+import modelo.Buys;
 import modelo.Client;
 
 import java.awt.event.ActionEvent;
@@ -15,16 +16,16 @@ import java.util.Map;
 
 public class LoginControlador {
 	UsuarioDAO dao = new ImplementacionBD();
-	
+
 	public void visualizarPantalla() {
 		VentanaInicio ven = new VentanaInicio(this);
 		ven.setVisible(true);	
 	}
-	
+
 	public boolean insertClient(Client client) {
 		return dao.insertClient(client);
 	}
-	
+
 	public boolean comprobarTrabajador(Worker worker) {
 		return dao.comprobarTrabajador(worker);
 	}
@@ -32,9 +33,14 @@ public class LoginControlador {
 	public boolean comprobarCliente(Client client) {
 		return dao.comprobarCliente(client);
 	}
-	
+
 	public boolean borrarProducto(Product producto) {
 		return dao.borrarProducto(producto);
 	}
 
+	public Map<String,Buys> mostrarCompras() {
+		return dao.mostrarCompras();
+	}
+
 }
+

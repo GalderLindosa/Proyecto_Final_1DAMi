@@ -7,5 +7,5 @@ public interface UsuarioDAO {
 	public boolean comprobarTrabajador(Worker worker);
 	public boolean insertClient(Client client);
 	public boolean borrarProducto(Product producto);
-	
+	public Map<String,Buys> mostrarCompras();
 }

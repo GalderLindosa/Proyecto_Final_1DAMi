@@ -59,7 +59,7 @@ public class VentanaInicio extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource()==BotonLoginWorker) {
-			VentanaLogingWorker v= new VentanaLogingWorker();
+			VentanaLogingWorker v= new VentanaLogingWorker(cont);
 			v.setVisible(true);
 			dispose();
 		}
