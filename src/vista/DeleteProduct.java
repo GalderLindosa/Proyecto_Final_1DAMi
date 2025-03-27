@@ -11,25 +11,64 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controlador.LoginControlador;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import java.awt.Font;
 
 public class DeleteProduct extends JDialog implements ActionListener{
 
 	private final JPanel contentPanel = new JPanel();
 	private LoginControlador cont;
-
+	private JTextField textField;
+	private JLabel DeleteProductLable;
+	private JLabel DeletedProductLabel;
+	private JButton DeleteButton;
+	
 	public DeleteProduct(LoginControlador cont) {
+		this.cont=cont;
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(null);
+		{
+			DeleteProductLable = new JLabel("Introduce the ID of the product you want to delete");
+			DeleteProductLable.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			DeleteProductLable.setHorizontalAlignment(SwingConstants.CENTER);
+			DeleteProductLable.setBounds(5, 30, 431, 26);
+			contentPanel.add(DeleteProductLable);
+		}
+		{
+			textField = new JTextField();
+			textField.setBounds(143, 77, 159, 26);
+			contentPanel.add(textField);
+			textField.setColumns(10);
+		}
+		{
+			DeletedProductLabel = new JLabel("");
+			DeletedProductLabel.setHorizontalAlignment(SwingConstants.CENTER);
+			DeletedProductLabel.setBounds(99, 162, 237, 26);
+			contentPanel.add(DeletedProductLabel);
+		}
+		
+		DeleteButton = new JButton("DELETE");
+		DeleteButton.setBounds(141, 126, 161, 26);
+		contentPanel.add(DeleteButton);
+		DeleteButton.addActionListener(this);
 	}
 
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+		if (e.getSource()==DeleteButton) {
+			if (cont.deleteProduct(textField.getText())) {
+				DeletedProductLabel.setText("Producto eliminado");
+			}else {
+				DeletedProductLabel.setText("ERROR, NO SE PUDO ELIMINAR EL PRODUCTO DE LA BASE DE DATOS");
+				
+			}
+		}
 	}
-
 }

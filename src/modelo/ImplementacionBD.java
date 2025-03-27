@@ -26,12 +26,11 @@ public class ImplementacionBD implements UsuarioDAO{
 
 	final String SQL = "SELECT * FROM clients WHERE ID_C = ? AND PASSWORD_C = ?";		
 	final String sql1 = "SELECT * FROM workers WHERE id_w = ? AND password_w = ?"; 
-	final String SQLUpdateProduct = "UPDATE products SET prize =? where ID_P=?"; //ModificarProducto 		
-	final String SQLDeleteProduct = "DELETE FROM products WHERE id_p=?"; //BorrarCliente
+	final String SQLDUpdateProduct = "UPDATE products SET prize =? WHERE id_p =?"; //ModificarProducto 
 
 	final String sqlInsert = "INSERT INTO CLIENTS VALUES (?,?)";
 	final String SQLCONSULTA = "SELECT * FROM products";
-	final String SQLBORRAR = "DELETE FROM usuario WHERE nombre=?";
+	final String SQLDELETEPRODUCT = "DELETE FROM products WHERE id_p=?";
 	final String SQLMODIFICAR = "UPDATE usuario SET contrasena=? WHERE nombre=?";
 
 	// Para la conexi n utilizamos un fichero de configuaraci n, config que
@@ -202,7 +201,8 @@ public class ImplementacionBD implements UsuarioDAO{
 		boolean ok=false;
 		this.openConnection();
 		try {
-			stmt = con.prepareStatement(SQLUpdateProduct);
+			// Preparamos la sentencia stmt con la conexion y sentencia sql correspondiente
+			stmt = con.prepareStatement(SQLDUpdateProduct);
 			stmt.setString(2, producto.getproduct_id());
 			stmt.setDouble(1, producto.getprice());
 			if (stmt.executeUpdate()>0) {
@@ -216,32 +216,32 @@ public class ImplementacionBD implements UsuarioDAO{
 		return ok;						
 	}
 
-	public boolean borrarUsuario (Product producto) {
+	public boolean deleteProduct (String producto) {
 		// Abrimos la conexion
 		boolean existe=false;
 		this.openConnection();
-		
+
 		try {
-			stmt = con.prepareStatement(SQLDeleteProduct);
-			stmt.setString(1, producto.getproduct_id());
+			stmt = con.prepareStatement(SQLDELETEPRODUCT);
+			stmt.setString(1, producto);
 			if(stmt.executeUpdate()>0) {
-        	   existe=true;
-           }
+				existe=true;
+			}
 
-          
-            
-            stmt.close();
-            stmt.close();
-            con.close();
 
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
 
-        return existe;	
+			stmt.close();
+			stmt.close();
+			con.close();
+
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+
+		return existe;	
 	}
-
 }
+
 
 
 

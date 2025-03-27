@@ -75,7 +75,7 @@ public class UpdateProductPrice extends JDialog implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource()==Update_button) {
-			if (cont.modificarPrecio(new Product(Integer.parseInt( Update_Textfield.getText()),ProductIDTextFIeld.getText()))) {
+			if (cont.modificarPrecio(new Product(Double.parseDouble( Update_Textfield.getText()),ProductIDTextFIeld.getText()))) {
 				PriceUpdatedLabel.setText("Precio Modificado");
 
 			}
