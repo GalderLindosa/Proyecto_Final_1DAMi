@@ -66,7 +66,7 @@ public class OpcionesCliente extends JDialog implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource()==ShowProductsInfo) {
-			JOptionPane.showMessageDialog(this,(String) id.g ,"Informacion del producto",JOptionPane.INFORMATION_MESSAGE,null);
+			JOptionPane.showMessageDialog(this,(String) "" ,"Informacion del producto",JOptionPane.INFORMATION_MESSAGE,null);
 		}
 	}
 	

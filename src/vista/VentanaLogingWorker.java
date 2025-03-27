@@ -78,11 +78,8 @@ public class VentanaLogingWorker extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("ENTRO");
 		if(e.getSource()==LoginButton) {
-			System.out.println("AAAAAAAAA");
 			if(cont.comprobarTrabajador(new Worker (new String(passwordField.getPassword()), WorkerIDtextField.getText()))){
-				System.out.println("bbbbbbbb");
 				OpcionesTrabajador v= new OpcionesTrabajador(cont);
 				v.setVisible(true);
 				dispose();

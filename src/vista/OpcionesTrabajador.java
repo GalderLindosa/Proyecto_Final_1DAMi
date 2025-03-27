@@ -26,7 +26,6 @@ public class OpcionesTrabajador extends JDialog implements ActionListener{
 	private Map<String, Product> mapa;
 	private LoginControlador cont;
 	private JButton DELETE_BUTTON;
-	private JButton SHOWPRODUCTINFO;
 	private JButton UPDATE_PRODUCT;
 
 	public OpcionesTrabajador(LoginControlador cont) {
@@ -43,24 +42,20 @@ public class OpcionesTrabajador extends JDialog implements ActionListener{
 		contentPanel.add(WelcomeLabel);
 
 		ProductBox = new JComboBox<String>();
-		ProductBox.setBounds(122, 99, 200, 21);
+		ProductBox.setBounds(45, 99, 339, 21);
 		contentPanel.add(ProductBox);
+		LoadProduct();
 
-		SHOWPRODUCTINFO = new JButton("SHOW PRODUCT INFO");
-		SHOWPRODUCTINFO.setBounds(21, 153, 147, 33);
-		contentPanel.add(SHOWPRODUCTINFO);
-		SHOWPRODUCTINFO.addActionListener(this);
-		
-		
+
 		DELETE_BUTTON = new JButton("DELETE PRODUCT");
-		DELETE_BUTTON.setBounds(266, 153, 118, 33);
+		DELETE_BUTTON.setBounds(248, 153, 153, 33);
 		contentPanel.add(DELETE_BUTTON);
 		DELETE_BUTTON.addActionListener(this);
-		
+
 		UPDATE_PRODUCT = new JButton("UPDATE PRODUCT PRICE");
-		UPDATE_PRODUCT.setBounds(145, 220, 147, 33);
+		UPDATE_PRODUCT.setBounds(10, 153, 233, 33);
 		contentPanel.add(UPDATE_PRODUCT);
-		DELETE_BUTTON.addActionListener(this);
+		UPDATE_PRODUCT.addActionListener(this);
 
 	}
 
@@ -69,14 +64,24 @@ public class OpcionesTrabajador extends JDialog implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource()==DELETE_BUTTON) {
-
+			DeleteProduct v= new DeleteProduct(cont);
+			v.setVisible(true);
 		}
 		if(e.getSource()==UPDATE_PRODUCT) {
-
-		}
-		if(e.getSource()==SHOWPRODUCTINFO) {
-
+			UpdateProductPrice v= new UpdateProductPrice(cont);
+			v.setVisible(true);
 		}
 
+	}
+
+	public void LoadProduct() {
+		mapa=cont.MostrarProducto();
+		if(!mapa.isEmpty()) {
+			ProductBox.setSelectedIndex(-1);
+			for(Product a : mapa.values()) {
+				ProductBox.addItem(a.toString());
+			}
+		}
+		ProductBox.setSelectedIndex(-1);
 	}
 }

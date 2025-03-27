@@ -35,5 +35,9 @@ public class LoginControlador {
 	public Map<String, Product> MostrarProducto(){
 		return dao.MostrarProducto();
 	}
+	public boolean modificarPrecio(Product producto) {
+		return dao.modificarPrecio(producto);
+	}
+
 
 }

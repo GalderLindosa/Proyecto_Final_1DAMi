@@ -23,6 +23,11 @@ public class Product {
 		this.category=category;
 	}
 
+	public Product(double price, String code) {
+		this.price=price;
+		this.product_id=code;
+	}
+
 	public String getproduct_name() {
 		return product_name;
 	}
@@ -75,7 +80,7 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return  " price: " + price + ", stock: " + stock + ", category : " + category + "id : " + product_id + "]";
+		return  " price: " + price + ", stock: " + stock + ", category : " + category + ", id : " + product_id + "]";
 	}
 
 

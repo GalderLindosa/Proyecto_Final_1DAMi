@@ -9,4 +9,6 @@ public interface UsuarioDAO {
 	public boolean comprobarTrabajador(Worker worker);
 	public boolean insertClient(Client client);
 	public Map<String, Product> MostrarProducto();
+	public boolean modificarPrecio(Product producto);
+
 }
