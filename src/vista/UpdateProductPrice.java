@@ -18,17 +18,23 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
 public class UpdateProductPrice extends JDialog implements ActionListener{
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField Update_Textfield;
 	private JLabel Update_lable;
 	private JButton Update_button;
 	LoginControlador cont;
 	private JLabel PriceUpdatedLabel;
 	private JTextField ProductIDTextFIeld;
 	private JLabel ProductIDLabel;
+	private JSpinner UpdateSpinner;
+	private JLabel ProductUpdateWindow;
+	
+	
+	
 	
 	public UpdateProductPrice(LoginControlador cont) {
 		this.cont=cont;
@@ -42,16 +48,12 @@ public class UpdateProductPrice extends JDialog implements ActionListener{
 		Update_lable = new JLabel("Enter the new product price");
 		Update_lable.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		Update_lable.setHorizontalAlignment(SwingConstants.CENTER);
-		Update_lable.setBounds(156, 141, 285, 35);
+		Update_lable.setBounds(10, 195, 230, 35);
 		contentPanel.add(Update_lable);
 		
-		Update_Textfield = new JTextField();
-		Update_Textfield.setBounds(183, 205, 206, 27);
-		contentPanel.add(Update_Textfield);
-		Update_Textfield.setColumns(10);
-		
 		Update_button = new JButton("UPDATE");
-		Update_button.setBounds(226, 267, 140, 35);
+		Update_button.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		Update_button.setBounds(203, 270, 196, 43);
 		contentPanel.add(Update_button);
 		Update_button.addActionListener(this);
 		PriceUpdatedLabel = new JLabel("");
@@ -62,20 +64,32 @@ public class UpdateProductPrice extends JDialog implements ActionListener{
 		ProductIDLabel = new JLabel("Enter the product ID");
 		ProductIDLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		ProductIDLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		ProductIDLabel.setBounds(144, 25, 297, 35);
+		ProductIDLabel.setBounds(10, 120, 217, 35);
 		contentPanel.add(ProductIDLabel);
 		
 		ProductIDTextFIeld = new JTextField();
-		ProductIDTextFIeld.setBounds(144, 82, 297, 36);
+		ProductIDTextFIeld.setBounds(240, 122, 297, 36);
 		contentPanel.add(ProductIDTextFIeld);
 		ProductIDTextFIeld.setColumns(10);
+		
+		UpdateSpinner = new JSpinner();
+		UpdateSpinner.setModel(new SpinnerNumberModel(0.0, 0.0, 100000.0, 10.0));
+		UpdateSpinner.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		UpdateSpinner.setBounds(345, 199, 77, 27);
+		contentPanel.add(UpdateSpinner);
+		
+		ProductUpdateWindow = new JLabel("Welcome to the product price update");
+		ProductUpdateWindow.setHorizontalAlignment(SwingConstants.CENTER);
+		ProductUpdateWindow.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		ProductUpdateWindow.setBounds(46, 23, 477, 43);
+		contentPanel.add(ProductUpdateWindow);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource()==Update_button) {
-			if (cont.modificarPrecio(new Product(Double.parseDouble( Update_Textfield.getText()),ProductIDTextFIeld.getText()))) {
+			if (cont.modificarPrecio(new Product( (double) UpdateSpinner.getValue() ,ProductIDTextFIeld.getText()))) {
 				PriceUpdatedLabel.setText("Precio Modificado");
 
 			}
