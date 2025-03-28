@@ -29,8 +29,10 @@ public class SignInClient extends JFrame implements ActionListener{
 	private JPasswordField passwordField;
 	private JLabel lblNewLabel;
 	int id;
+	private JButton btnClose;
 
 	public SignInClient(LoginControlador cont) {
+		setUndecorated(true);
 		this.cont=cont;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -70,10 +72,15 @@ public class SignInClient extends JFrame implements ActionListener{
 		passwordField = new JPasswordField();
 		passwordField.setBounds(162, 192, 96, 19);
 		contentPane.add(passwordField);
-		
+
 		lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(25, 97, 96, 28);
 		contentPane.add(lblNewLabel);
+
+		btnClose = new JButton("X");
+		btnClose.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnClose.setBounds(409, 0, 41, 27);
+		contentPane.add(btnClose);
 	}
 
 
@@ -85,10 +92,12 @@ public class SignInClient extends JFrame implements ActionListener{
 				id=Integer.parseInt(IDField.getText());
 				OpcionesCliente v= new OpcionesCliente(cont, id); //at vista.SignInClient.actionPerformed(SignInClient.java:86)
 				v.setVisible(true);
-				dispose();
 			}
 			else {
 				lblNewLabel.setText("ERROR AL INICIAR SESION");
+			}
+			if (e.getSource()==btnClose) {
+				dispose();
 			}
 		}
 	}

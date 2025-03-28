@@ -33,8 +33,10 @@ public class OpcionesCliente extends JDialog implements ActionListener {
 	private JButton btnShowPurchase;
 	private JButton btnShowProducts;
 	private JLabel lblDecideQueQuieres;
-	
+	private JButton btnClose;
+
 	public OpcionesCliente(LoginControlador cont, int id) {
+		setUndecorated(true);
 		this.cont=cont;
 		this.id=id;
 		this.mapa=cont.MostrarProducto();
@@ -44,7 +46,7 @@ public class OpcionesCliente extends JDialog implements ActionListener {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		
+
 
 		lblNewLabel = new JLabel();
 		lblNewLabel.setText("BIENVENIDO/A!");
@@ -65,11 +67,16 @@ public class OpcionesCliente extends JDialog implements ActionListener {
 		btnShowPurchase.setBounds(130, 94, 178, 41);
 		contentPanel.add(btnShowPurchase);
 		btnShowPurchase.addActionListener(this);
-		
-	    btnShowProducts = new JButton("Show products");
+
+		btnShowProducts = new JButton("Show products");
 		btnShowProducts.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnShowProducts.setBounds(130, 165, 178, 41);
 		contentPanel.add(btnShowProducts);
+
+		btnClose = new JButton("X");
+		btnClose.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnClose.setBounds(409, 0, 41, 27);
+		contentPanel.add(btnClose);
 		btnShowProducts.addActionListener(this);
 
 	}
@@ -85,6 +92,9 @@ public class OpcionesCliente extends JDialog implements ActionListener {
 		if (e.getSource()==btnShowProducts) {
 			VentanaProductos v=new  VentanaProductos(this,cont, id);
 			v.setVisible(true);
+		}
+		if (e.getSource()==btnClose) {
+			dispose();
 		}
 	}		
 }

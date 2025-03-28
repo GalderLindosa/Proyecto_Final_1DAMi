@@ -61,12 +61,12 @@ public class VentanaInicio extends JFrame implements ActionListener{
 		if(e.getSource()==BotonLoginWorker) {
 			VentanaLogingWorker v= new VentanaLogingWorker(cont);
 			v.setVisible(true);
-			dispose();
+			
 		}
 		if(e.getSource()==BotonLoginClient) {
 			VentanaLogingClient v= new VentanaLogingClient(cont);
 			v.setVisible(true);
-			dispose();
+			
 		}
 	}
 }
