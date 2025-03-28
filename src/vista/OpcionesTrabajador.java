@@ -29,6 +29,7 @@ public class OpcionesTrabajador extends JDialog implements ActionListener{
 	private JButton UPDATE_PRODUCT;
 
 	public OpcionesTrabajador(LoginControlador cont) {
+		setTitle("Worker's options");
 		this.cont=cont;
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
@@ -36,7 +37,7 @@ public class OpcionesTrabajador extends JDialog implements ActionListener{
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 
-		WelcomeLabel = new JLabel("WELCOME TO THE ADMIN PAGE!!!!");
+		WelcomeLabel = new JLabel("WELCOME TO THE WORKERS PAGE!!!!");
 		WelcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		WelcomeLabel.setBounds(110, 27, 200, 48);
 		contentPanel.add(WelcomeLabel);

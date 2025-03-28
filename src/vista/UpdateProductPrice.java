@@ -37,6 +37,7 @@ public class UpdateProductPrice extends JDialog implements ActionListener{
 	
 	
 	public UpdateProductPrice(LoginControlador cont) {
+		setTitle("Product update");
 		this.cont=cont;
 		setModal(rootPaneCheckingEnabled);
 		setBounds(100, 100, 575, 386);
