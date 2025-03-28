@@ -40,6 +40,7 @@ public class OpcionesTrabajador extends JDialog implements ActionListener{
 		WelcomeLabel.setBounds(110, 27, 200, 48);
 		contentPanel.add(WelcomeLabel);
 		
+		
 		ProductBox = new JComboBox<String>();
 		ProductBox.setBounds(122, 99, 200, 21);
 		contentPanel.add(ProductBox);
@@ -55,4 +56,4 @@ public class OpcionesTrabajador extends JDialog implements ActionListener{
 	
 	
 	
-}s
+}

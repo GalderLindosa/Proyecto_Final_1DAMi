@@ -83,7 +83,7 @@ public class SignInClient extends JFrame implements ActionListener{
 		if(e.getSource()==SignInClient) {
 			if(cont.comprobarCliente(new Client (new String(passwordField.getPassword()), Integer.parseInt(IDField.getText())))){
 				id=Integer.parseInt(IDField.getText());
-				OpcionesCliente v= new OpcionesCliente(cont, id);
+				OpcionesCliente v= new OpcionesCliente(cont, id); //at vista.SignInClient.actionPerformed(SignInClient.java:86)
 				v.setVisible(true);
 				dispose();
 			}

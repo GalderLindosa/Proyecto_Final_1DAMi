@@ -2,6 +2,7 @@ package controlador;
 
 import modelo.ImplementacionBD;
 import modelo.Product;
+import modelo.ShowBuys;
 import modelo.UsuarioDAO;
 import modelo.Worker;
 import vista.VentanaInicio;
@@ -38,8 +39,12 @@ public class LoginControlador {
 		return dao.borrarProducto(producto);
 	}
 
-	public Map<String,Buys> mostrarCompras() {
-		return dao.mostrarCompras();
+	public Map<String,ShowBuys> mostrarCompras() {
+		return dao.mostrarCompras(); 
+	}
+
+	public Map<String, Product> MostrarProducto() {
+		return dao.MostrarProducto();
 	}
 
 }

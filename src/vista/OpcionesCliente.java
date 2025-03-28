@@ -26,17 +26,18 @@ import java.util.Map;
 public class OpcionesCliente extends JDialog implements ActionListener {
 
 	private final JPanel contentPanel = new JPanel();
-	private JComboBox <String> comboBox;
 	private JLabel lblNewLabel;
-	private Map<String, ShowBuys> mapa;
+	private Map<String, Product> mapa;
 	private LoginControlador cont;
-	private JButton ShowProductsInfo;
 	int id;
+	private JButton btnShowPurchase;
+	private JButton btnShowProducts;
+	private JLabel lblDecideQueQuieres;
 	
 	public OpcionesCliente(LoginControlador cont, int id) {
 		this.cont=cont;
 		this.id=id;
-		this.mapa=cont.mostrarCompras();
+		this.mapa=cont.MostrarProducto();
 
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
@@ -44,22 +45,32 @@ public class OpcionesCliente extends JDialog implements ActionListener {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
-		comboBox = new JComboBox <String> ();
-		comboBox.setBounds(122, 100, 170, 21);
-		contentPanel.add(comboBox);
-		cargarProd();
-		
+
 		lblNewLabel = new JLabel();
 		lblNewLabel.setText("BIENVENIDO/A!");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(35, 10, 376, 52);
+		lblNewLabel.setBounds(30, 10, 376, 52);
 		contentPanel.add(lblNewLabel);
+
+		lblDecideQueQuieres = new JLabel();
+		lblDecideQueQuieres.setText("Decide que quieres hacer\r\n");
+		lblDecideQueQuieres.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDecideQueQuieres.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblDecideQueQuieres.setBounds(30, 32, 376, 52);
+		contentPanel.add(lblDecideQueQuieres);
+
+		btnShowPurchase = new JButton("Show Purchases\r\n");
+		btnShowPurchase.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnShowPurchase.setBounds(130, 94, 178, 41);
+		contentPanel.add(btnShowPurchase);
+		btnShowPurchase.addActionListener(this);
 		
-		ShowProductsInfo = new JButton("Mostrar informacion del producto");
-		ShowProductsInfo.setBounds(10, 167, 184, 37);
-		contentPanel.add(ShowProductsInfo);
-		ShowProductsInfo.addActionListener(this);
+	    btnShowProducts = new JButton("Show products");
+		btnShowProducts.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnShowProducts.setBounds(130, 165, 178, 41);
+		contentPanel.add(btnShowProducts);
+		btnShowProducts.addActionListener(this);
 
 	}
 
@@ -67,20 +78,13 @@ public class OpcionesCliente extends JDialog implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource()==ShowProductsInfo) {
-			JOptionPane.showMessageDialog(this,(String) id.g ,"Informacion del producto",JOptionPane.INFORMATION_MESSAGE,null);
+		if (e.getSource()==btnShowPurchase) {
+			VentanaCompras v=new  VentanaCompras(this,cont,id);
+			v.setVisible(true);
 		}
-	}
-	
-	
-	public void cargarProd() {
-		mapa=cont.mostrarCompras();
-		if(!mapa.isEmpty()) {
-			comboBox.setSelectedIndex(-1);
-			for(ShowBuys a : mapa.values()) {
-				comboBox.addItem(a.getproduct_name());
-			}
+		if (e.getSource()==btnShowProducts) {
+			VentanaProductos v=new  VentanaProductos(this,cont, id);
+			v.setVisible(true);
 		}
-		comboBox.setSelectedIndex(-1);
-	}
+	}		
 }

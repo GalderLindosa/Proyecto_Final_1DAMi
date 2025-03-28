@@ -14,7 +14,6 @@ public class ShowBuys {
 	}
 
 	
-	
 	public ShowBuys() {
 		//constructor vacio 
 	}
@@ -47,9 +46,12 @@ public class ShowBuys {
 
 	@Override
 	public String toString() {
-		return "ShowBuys [Buying_Date=" + Buying_Date + ", product_amount=" + product_amount + ", name_c=" + name_c
+		return "Buying_Date: " + Buying_Date + "  Product_amount: " + product_amount + ", ClientName: " + name_c
 				+ "]";
 	}
+
+
+	
 
 	
 	

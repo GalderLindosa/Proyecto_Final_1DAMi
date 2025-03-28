@@ -27,11 +27,12 @@ public class ImplementacionBD implements UsuarioDAO{
 	final String SQLLoginCliente = "SELECT * FROM clients WHERE id_c = ? AND password_c = ?";	//(IniciarSesion Cliente)	(Hecho)
 	final String SQLLoginTrabajador = "SELECT * FROM workers WHERE name_w = ? AND password_w = ?";  //(IniciarSesion Trabajadores) (Hecho)
 	final String sqlInsertClient = "INSERT INTO CLIENTS VALUES (?,?,?)"; //(CrearCliente) (Hecho)
-	final String SQLMostrarCompras ="SELECT  AMOUNT, CLIENTS.NAME_C FROM BUYS JOIN CLIENTS ON BUYS.ID_C = CLIENTS.ID_C";
+	final String SQLMostrarCompras ="SELECT BUYING_DATE, AMOUNT, NAME_C FROM BUYS JOIN CLIENTS ON BUYS.ID_C = CLIENTS.ID_C;";
 	//mostrarCompras (hecho)
 	final String SQLDeleteCliente = "DELETE FROM client WHERE id_c=?"; //BorrarCliente
 	final String SQLDUpdateProduct = "UPDATE product SET prize =? WHERE id_p =?"; //ModificarProducto 
-	final String SQLDeleteProduct = "DELETE FROM product where ID_P=?"; //BorrarProducto
+	final String SQLDeleteProduct = "DELETE FROM product where id_p=?"; //BorrarProducto
+	final String SQLShowProducts = "SELECT * FROM products";
 
 	/*Cliente tiene la posibilidad de ver y comprar producto, ambas se separan en un boton cada uno, la cual manda cada una a un dialog
 		 En el apartado de comprar producto se va a usar el procedimiento almacenado que es obligatorio usar en el reto.
@@ -66,7 +67,7 @@ public class ImplementacionBD implements UsuarioDAO{
 		this.openConnection();
 		try {
 			stmt = con.prepareStatement(SQLLoginCliente);
-			stmt.setString(1, client.getclient_name());
+			stmt.setInt(1, client.getclient_id());
 			stmt.setString(2, client.getclient_password());
 			ResultSet resultado = stmt.executeQuery();
 
@@ -170,6 +171,8 @@ public class ImplementacionBD implements UsuarioDAO{
 
 	}
 
+
+
 	public Map<String,ShowBuys> mostrarCompras() { //visualizar
 		// TODO Auto-generated method stub
 		// Me ha dicho que lo mejor es hacer otra clase porque cojo muchos datos, me ha dicho Leire que a ella le paso lo mismo preparando el examen.
@@ -177,7 +180,8 @@ public class ImplementacionBD implements UsuarioDAO{
 		ShowBuys compra;
 		Map<String, ShowBuys> compras = new TreeMap<>();
 
-		// Abrimos la conexi n
+
+		// Abrimos la conexion
 		this.openConnection();
 
 		try {
@@ -187,13 +191,13 @@ public class ImplementacionBD implements UsuarioDAO{
 
 			// Leemos de uno en uno
 			while (rs.next()) {
-				compra = new ShowBuys();  
-				compra.setBuying_Date(rs.getDate("Fecha_Compra").toLocalDate()); //hay que ponerle date, y si pregunta ponerle SQL date
-				compra.setAmount(rs.getInt("Cantidad"));
-				compras.put(rs.getString("Nombre"), compra);
+				compra = new ShowBuys(); 
+				compra.setBuying_Date(rs.getDate("buying_date")); //hay que ponerle date, y si pregunta ponerle SQL date
+				compra.setProduct_amount(rs.getInt("amount"));
+				compras.put(rs.getString("name_c"), compra);
 				// unica alternativa que he conseguido por parte de la IA,ha sido claude la que me ha dado la solucion 
 			} 
-			
+
 			rs.close();
 			stmt.close();
 			con.close();
@@ -202,6 +206,41 @@ public class ImplementacionBD implements UsuarioDAO{
 			e.printStackTrace();
 		}
 		return compras;
+
+	}
+
+	public Map<String, Product> MostrarProducto() {
+		// TODO Auto-generated method stub
+
+		ResultSet rs = null;
+		Product producto;
+		Map<String, Product> productos = new TreeMap<>();
+
+		// Abrimos la conexion
+		this.openConnection();
+
+		try {
+			stmt = con.prepareStatement(SQLShowProducts);
+
+			rs = stmt.executeQuery();
+
+			// Leemos de uno en uno
+			while (rs.next()) {
+				producto = new Product();
+				producto.setproduct_name(rs.getString("NAME_P"));
+				producto.setprice(rs.getDouble("PRIZE"));
+				producto.setproduct_id(rs.getString("ID_P"));
+				producto.setStock(rs.getInt("STOCK"));
+				productos.put(producto.getproduct_name(), producto);
+			}
+			rs.close();
+			stmt.close();
+			con.close();
+		} catch (SQLException e) {
+			System.out.println("Error de SQL");
+			e.printStackTrace();
+		}
+		return productos;
 
 	}
 
@@ -240,13 +279,6 @@ public class ImplementacionBD implements UsuarioDAO{
 			if (stmt.executeUpdate()>0) {
 				ok=true;
 			}
-
-			/*	private String product_name;
-					private double price;
-					private int stock;
-					private Product_Category category;
-					private String product_id;
-			 */
 			stmt.close();
 			con.close();
 		} catch (SQLException e) {

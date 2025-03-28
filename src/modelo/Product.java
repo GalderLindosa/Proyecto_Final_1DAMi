@@ -15,7 +15,11 @@ public class Product {
 		this.category=type;
 	}
 
- 
+
+	public Product() {
+		super();
+	}
+
 
 	public String getproduct_name() {
 		return product_name;
@@ -72,7 +76,6 @@ public class Product {
 		return "Producto [product_name=" + product_name + ", price=" + price + ", stock=" + stock + ", category=" + category
 				+ ", product_id=" + product_id + "]";
 	}
-
 
 
 }
