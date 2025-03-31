@@ -192,9 +192,9 @@ public class ImplementacionBD implements UsuarioDAO{
 			// Leemos de uno en uno
 			while (rs.next()) {
 				compra = new ShowBuys(); 
-				compra.setBuying_Date(rs.getDate("buying_date")); //hay que ponerle date, y si pregunta ponerle SQL date
-				compra.setProduct_amount(rs.getInt("amount"));
-				compras.put(rs.getString("name_c"), compra);
+				compra.setBuying_Date(rs.getDate("BUYING_DATE")); //hay que ponerle date, y si pregunta ponerle SQL date
+				compra.setProduct_amount(rs.getInt("AMOUNT"));
+				compras.put(rs.getString("NAME_C"), compra);
 				// unica alternativa que he conseguido por parte de la IA,ha sido claude la que me ha dado la solucion 
 			} 
 

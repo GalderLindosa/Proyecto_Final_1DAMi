@@ -23,10 +23,12 @@ public class VentanaInicio extends JFrame implements ActionListener{
 	private JButton BotonLoginWorker;
 	private JButton BotonLoginClient;
 	private LoginControlador cont;
+	private JButton btnClose;
 
 
 
 	public VentanaInicio(LoginControlador cont) {
+		setUndecorated(true);
 		this.cont=cont;
 		setTitle("Pagina Inicio");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -53,6 +55,12 @@ public class VentanaInicio extends JFrame implements ActionListener{
 		BotonLoginClient.setBounds(113, 245, 258, 78);
 		contentPane.add(BotonLoginClient);
 		BotonLoginClient.addActionListener(this);
+		
+		btnClose = new JButton("X");
+		btnClose.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnClose.setBounds(468, 0, 49, 31);
+		contentPane.add(btnClose);
+		btnClose.addActionListener(this);
 	}
 
 	@Override
@@ -66,7 +74,9 @@ public class VentanaInicio extends JFrame implements ActionListener{
 		if(e.getSource()==BotonLoginClient) {
 			VentanaLogingClient v= new VentanaLogingClient(cont);
 			v.setVisible(true);
-			
+		}
+		if (e.getSource()==btnClose) {
+			dispose();
 		}
 	}
 }

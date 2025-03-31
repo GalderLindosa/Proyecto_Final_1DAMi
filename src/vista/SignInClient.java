@@ -78,9 +78,10 @@ public class SignInClient extends JFrame implements ActionListener{
 		contentPane.add(lblNewLabel);
 
 		btnClose = new JButton("X");
-		btnClose.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnClose.setBounds(409, 0, 41, 27);
+		btnClose.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnClose.setBounds(468, 0, 49, 31);
 		contentPane.add(btnClose);
+		btnClose.addActionListener(this);
 	}
 
 

@@ -83,9 +83,10 @@ public class SignUpClient extends JFrame implements ActionListener{
 		contentPane.add(creado);
 
 		btnClose = new JButton("X");
-		btnClose.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnClose.setBounds(587, 0, 41, 27);
+		btnClose.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnClose.setBounds(468, 0, 49, 31);
 		contentPane.add(btnClose);
+		btnClose.addActionListener(this);
 	}
 
 	@Override
