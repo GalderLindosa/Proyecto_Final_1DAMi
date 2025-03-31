@@ -14,6 +14,7 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Toolkit;
 
 public class VentanaLogingClient extends JFrame implements ActionListener{
 
@@ -24,6 +25,9 @@ public class VentanaLogingClient extends JFrame implements ActionListener{
 	private LoginControlador cont;
 	
 	public VentanaLogingClient(LoginControlador cont) {
+		
+		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaLogingClient.class.getResource("/images/media-markt-1.png")));
+		setTitle("Clients' log in menu");
 		this.cont=cont;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);

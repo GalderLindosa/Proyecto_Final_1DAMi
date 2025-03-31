@@ -20,6 +20,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
+import java.awt.Toolkit;
 
 public class UpdateProductPrice extends JDialog implements ActionListener{
 
@@ -37,6 +38,8 @@ public class UpdateProductPrice extends JDialog implements ActionListener{
 	
 	
 	public UpdateProductPrice(LoginControlador cont) {
+		setModal(rootPaneCheckingEnabled);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(UpdateProductPrice.class.getResource("/images/media-markt-1.png")));
 		setTitle("Product update");
 		this.cont=cont;
 		setModal(rootPaneCheckingEnabled);
@@ -54,7 +57,7 @@ public class UpdateProductPrice extends JDialog implements ActionListener{
 		
 		Update_button = new JButton("UPDATE");
 		Update_button.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		Update_button.setBounds(203, 270, 196, 43);
+		Update_button.setBounds(183, 264, 196, 43);
 		contentPanel.add(Update_button);
 		Update_button.addActionListener(this);
 		PriceUpdatedLabel = new JLabel("");
@@ -76,7 +79,7 @@ public class UpdateProductPrice extends JDialog implements ActionListener{
 		UpdateSpinner = new JSpinner();
 		UpdateSpinner.setModel(new SpinnerNumberModel(0.0, 0.0, 100000.0, 10.0));
 		UpdateSpinner.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		UpdateSpinner.setBounds(345, 199, 77, 27);
+		UpdateSpinner.setBounds(240, 199, 77, 27);
 		contentPanel.add(UpdateSpinner);
 		
 		ProductUpdateWindow = new JLabel("Welcome to the product price update");

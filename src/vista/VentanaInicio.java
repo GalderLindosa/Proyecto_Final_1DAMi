@@ -33,6 +33,7 @@ public class VentanaInicio extends JFrame implements ActionListener{
 	
 
 	public VentanaInicio(LoginControlador cont) {
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaInicio.class.getResource("/images/media-markt-1.png")));
 		this.cont=cont;
 		setTitle("Opening page");
@@ -69,7 +70,7 @@ public class VentanaInicio extends JFrame implements ActionListener{
 		InfoButtonWorker.addActionListener(this);
 
 		InfoButtonClient = new JButton("");
-		InfoButtonClient.setIcon(new ImageIcon("C:\\Users\\1dami\\Downloads\\info.png"));
+		InfoButtonClient.setIcon(new ImageIcon(VentanaInicio.class.getResource("/images/info.png")));
 		InfoButtonClient.setBounds(380, 247, 40, 40);
 		contentPane.add(InfoButtonClient);
 		InfoButtonClient.addActionListener(this);

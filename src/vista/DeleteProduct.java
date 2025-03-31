@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.Toolkit;
 
 public class DeleteProduct extends JDialog implements ActionListener{
 
@@ -26,8 +27,11 @@ public class DeleteProduct extends JDialog implements ActionListener{
 	private JButton DeleteButton;
 	
 	public DeleteProduct(LoginControlador cont) {
+		setModal(rootPaneCheckingEnabled);
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\1dami\\Downloads\\media-markt-1.png"));
+		setTitle("Delete product");
 		this.cont=cont;
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 447, 234);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);

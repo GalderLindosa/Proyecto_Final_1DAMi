@@ -17,6 +17,7 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
+import java.awt.Toolkit;
 
 public class VentanaLogingWorker extends JFrame implements ActionListener{
 
@@ -28,10 +29,13 @@ public class VentanaLogingWorker extends JFrame implements ActionListener{
 	private LoginControlador cont; 
 	private JPasswordField passwordField;
 	private JLabel workersIDlabel;
+	private JLabel LoginErrorLabel;
 	
 	public VentanaLogingWorker(LoginControlador cont) {
+		
+		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaLogingWorker.class.getResource("/images/media-markt-1.png")));
 		this.cont=cont;
-		setTitle("Worker's login");
+		setTitle("Worker's login page");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 511, 452);
 		contentPane = new JPanel();
@@ -49,29 +53,35 @@ public class VentanaLogingWorker extends JFrame implements ActionListener{
 		workersIDlabel = new JLabel("Introduce your worker's ID");
 		workersIDlabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		workersIDlabel.setHorizontalAlignment(SwingConstants.CENTER);
-		workersIDlabel.setBounds(139, 108, 198, 40);
+		workersIDlabel.setBounds(139, 93, 198, 40);
 		contentPane.add(workersIDlabel);
 		
 		WorkerIDtextField = new JTextField();
-		WorkerIDtextField.setBounds(139, 169, 198, 28);
+		WorkerIDtextField.setBounds(139, 143, 198, 28);
 		contentPane.add(WorkerIDtextField);
 		WorkerIDtextField.setColumns(10);
 		
 		WorkerPasswordLabel = new JLabel("Introduce your password");
 		WorkerPasswordLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		WorkerPasswordLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		WorkerPasswordLabel.setBounds(139, 219, 190, 40);
+		WorkerPasswordLabel.setBounds(147, 192, 190, 40);
 		contentPane.add(WorkerPasswordLabel);
 		
 		LoginButton = new JButton("Log in");
 		LoginButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		LoginButton.setBounds(155, 354, 171, 28);
+		LoginButton.setBounds(154, 298, 171, 28);
 		contentPane.add(LoginButton);
 		LoginButton.addActionListener(this);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(139, 279, 198, 28);
+		passwordField.setBounds(139, 242, 198, 28);
 		contentPane.add(passwordField);
+		
+		LoginErrorLabel = new JLabel("");
+		LoginErrorLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		LoginErrorLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		LoginErrorLabel.setBounds(65, 348, 400, 34);
+		contentPane.add(LoginErrorLabel);
 	}
 
 
@@ -83,6 +93,9 @@ public class VentanaLogingWorker extends JFrame implements ActionListener{
 				OpcionesTrabajador v= new OpcionesTrabajador(cont);
 				v.setVisible(true);
 				dispose();
+			}
+			else {
+				LoginErrorLabel.setText("ERROR! Asegurese de que las credenciales son correctas");
 			}
 		}
 	}

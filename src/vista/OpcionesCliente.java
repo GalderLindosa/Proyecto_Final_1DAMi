@@ -20,6 +20,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Map;
+import java.awt.Toolkit;
 
 public class OpcionesCliente extends JDialog implements ActionListener {
 
@@ -30,8 +31,12 @@ public class OpcionesCliente extends JDialog implements ActionListener {
 	private LoginControlador cont;
 	private JButton ShowProductsInfo;
 	int id;
-	
-	public OpcionesCliente(LoginControlador cont, int id) {
+
+	public OpcionesCliente(LoginControlador cont) {
+		setModal(rootPaneCheckingEnabled);
+		this.setModal(rootPaneCheckingEnabled);	
+		setIconImage(Toolkit.getDefaultToolkit().getImage(OpcionesCliente.class.getResource("/images/media-markt-1.png")));
+		setTitle("Clients options");
 		this.cont=cont;
 		this.id=id;
 		this.mapa=cont.MostrarProducto();
@@ -41,19 +46,19 @@ public class OpcionesCliente extends JDialog implements ActionListener {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		
+
 		comboBox = new JComboBox <String> ();
 		comboBox.setBounds(122, 100, 170, 21);
 		contentPanel.add(comboBox);
 		cargarProd();
-		
+
 		lblNewLabel = new JLabel();
 		lblNewLabel.setText("BIENVENIDO/A!");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(35, 10, 376, 52);
 		contentPanel.add(lblNewLabel);
-		
+
 		ShowProductsInfo = new JButton("Mostrar informacion del producto");
 		ShowProductsInfo.setBounds(10, 167, 184, 37);
 		contentPanel.add(ShowProductsInfo);
@@ -69,10 +74,10 @@ public class OpcionesCliente extends JDialog implements ActionListener {
 			JOptionPane.showMessageDialog(this,(String) "" ,"Informacion del producto",JOptionPane.INFORMATION_MESSAGE,null);
 		}
 	}
-	
+
 	public void cargarProd() {
 		mapa=cont.MostrarProducto();
-				if(!mapa.isEmpty()) {
+		if(!mapa.isEmpty()) {
 			comboBox.setSelectedIndex(-1);
 			for(Product a : mapa.values()) {
 				comboBox.addItem(a.getproduct_name());
