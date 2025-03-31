@@ -7,89 +7,161 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controlador.LoginControlador;
+import modelo.Product;
+import modelo.Product_Category;
+
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Map;
+
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JSpinner;
 import javax.swing.JComboBox;
+import java.awt.Toolkit;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.SpinnerNumberModel;
 
-public class ImportProduct extends JDialog {
+public class ImportProduct extends JDialog implements ActionListener{
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField ProductID;
+	private JTextField ProductName;
+	private JLabel NameLabel;
+	private JLabel IDLabel;
+	private JLabel PriceLabel;
+	private JLabel StockLabel;
+	private JSpinner PriceSpinner;
+	private JSpinner StockSpinner;
+	private JComboBox ProductCategory;
+	private LoginControlador cont;
+	private JButton AddButton;
+	private JLabel CategoryLabel;
+	private JLabel WelcomeLabel;
+	private Product_Category categoria;
+	private Map<String, Product> mapa;
 
-	
-	
-	
-	public ImportProduct() {
+
+	public ImportProduct(LoginControlador cont) {
 		setModal(rootPaneCheckingEnabled);
-		setBounds(100, 100, 450, 501);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ImportProduct.class.getResource("/images/media-markt-1.png")));
+		this.cont=cont;
+		setModal(rootPaneCheckingEnabled);
+		setBounds(100, 100, 450, 483);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
-			JLabel lblNewLabel = new JLabel("New label");
-			lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			lblNewLabel.setBounds(20, 194, 136, 28);
-			contentPanel.add(lblNewLabel);
+			NameLabel = new JLabel("Name");
+			NameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+			NameLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			NameLabel.setBounds(39, 139, 136, 28);
+			contentPanel.add(NameLabel);
 		}
 		{
-			JLabel lblNewLabel = new JLabel("New label");
-			lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			lblNewLabel.setBounds(20, 126, 136, 28);
-			contentPanel.add(lblNewLabel);
+			IDLabel = new JLabel("ID");
+			IDLabel.setHorizontalAlignment(SwingConstants.CENTER);
+			IDLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			IDLabel.setBounds(39, 71, 136, 28);
+			contentPanel.add(IDLabel);
 		}
 		{
-			JLabel lblNewLabel = new JLabel("New label");
-			lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			lblNewLabel.setBounds(20, 257, 136, 28);
-			contentPanel.add(lblNewLabel);
+			PriceLabel = new JLabel("Price");
+			PriceLabel.setHorizontalAlignment(SwingConstants.CENTER);
+			PriceLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			PriceLabel.setBounds(39, 202, 136, 28);
+			contentPanel.add(PriceLabel);
 		}
 		{
-			JLabel lblNewLabel = new JLabel("New label");
-			lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			lblNewLabel.setBounds(20, 335, 136, 28);
-			contentPanel.add(lblNewLabel);
+			StockLabel = new JLabel("Stock");
+			StockLabel.setHorizontalAlignment(SwingConstants.CENTER);
+			StockLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			StockLabel.setBounds(39, 280, 136, 28);
+			contentPanel.add(StockLabel);
 		}
 		{
-			JLabel lblNewLabel = new JLabel("New label");
-			lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			lblNewLabel.setBounds(20, 399, 136, 28);
-			contentPanel.add(lblNewLabel);
+			CategoryLabel = new JLabel("Category");
+			CategoryLabel.setHorizontalAlignment(SwingConstants.CENTER);
+			CategoryLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			CategoryLabel.setBounds(39, 344, 136, 28);
+			contentPanel.add(CategoryLabel);
 		}
 		{
-			JLabel lblNewLabel = new JLabel("New label");
-			lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-			lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			lblNewLabel.setBounds(63, 21, 296, 28);
-			contentPanel.add(lblNewLabel);
+			WelcomeLabel = new JLabel("Introduce the product info");
+			WelcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
+			WelcomeLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			WelcomeLabel.setBounds(63, 22, 296, 28);
+			contentPanel.add(WelcomeLabel);
 		}
-		
-		textField = new JTextField();
-		textField.setBounds(191, 126, 136, 28);
-		contentPanel.add(textField);
-		textField.setColumns(10);
-		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(191, 201, 136, 28);
-		contentPanel.add(textField_1);
-		
-		JSpinner spinner = new JSpinner();
-		spinner.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		spinner.setBounds(215, 264, 65, 28);
-		contentPanel.add(spinner);
-		
-		JSpinner spinner_1 = new JSpinner();
-		spinner_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		spinner_1.setBounds(215, 336, 65, 28);
-		contentPanel.add(spinner_1);
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(215, 405, 200, 28);
-		contentPanel.add(comboBox);
+
+		ProductID = new JTextField();
+		ProductID.setBounds(210, 71, 136, 28);
+		contentPanel.add(ProductID);
+		ProductID.setColumns(10);
+
+		ProductName = new JTextField();
+		ProductName.setColumns(10);
+		ProductName.setBounds(210, 146, 136, 28);
+		contentPanel.add(ProductName);
+
+		PriceSpinner = new JSpinner();
+		PriceSpinner.setModel(new SpinnerNumberModel(Double.valueOf(0), Double.valueOf(0), null, Double.valueOf(5)));
+		PriceSpinner.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		PriceSpinner.setBounds(234, 203, 65, 28);
+		contentPanel.add(PriceSpinner);
+
+		StockSpinner = new JSpinner();
+		StockSpinner.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		StockSpinner.setBounds(234, 281, 65, 28);
+		contentPanel.add(StockSpinner);
+
+		ProductCategory = new JComboBox();
+		ProductCategory.setModel(new DefaultComboBoxModel(Product_Category.values()));
+		ProductCategory.setToolTipText("");
+		ProductCategory.setBounds(210, 346, 200, 28);
+		contentPanel.add(ProductCategory);
+		AddButton = new JButton("Add product");
+		AddButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		AddButton.setBounds(137, 406, 162, 28);
+		contentPanel.add(AddButton);
+		AddButton.addActionListener(this);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource()==AddButton) {
+			if(cont.insertProduct(new Product(ProductID.getText(), ProductName.getText(), (double) PriceSpinner.getValue(), (int) StockSpinner.getValue(), SetEnum(categoria)  ))) {
+
+			}
+		}
+	}
+
+	public Product_Category SetEnum(Product_Category categoria) {
+		if(ProductCategory.getToolTipText().equalsIgnoreCase("HOME APPLIANCES")) {
+			categoria= Product_Category.HOME_APPLIANCES;
+		}
+		if(ProductCategory.getToolTipText().equalsIgnoreCase("COMPUTING")) {
+			categoria= Product_Category.COMPUTING;
+		}
+		if(ProductCategory.getToolTipText().equalsIgnoreCase("HOME")) {
+			categoria= Product_Category.HOME;
+		}
+		return categoria;
+	}
+	public void cargarProd() {
+		mapa=cont.MostrarProducto();
+		if(!mapa.isEmpty()) {
+			ProductCategory.setSelectedIndex(-1);
+			for(Product a : mapa.values()) {
+				ProductCategory.addItem(a.getcategory());
+			}
+		}
+		ProductCategory.setSelectedIndex(-1);
 	}
 }

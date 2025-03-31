@@ -41,5 +41,7 @@ public class LoginControlador {
 	public boolean deleteProduct (String string) {
 		return dao.deleteProduct(string);
 	}
-
+	public boolean insertProduct(Product producto) {
+		return dao.insertProduct(producto);
+	}
 }

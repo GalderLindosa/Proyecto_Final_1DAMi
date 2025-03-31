@@ -28,7 +28,7 @@ public class OpcionesTrabajador extends JDialog implements ActionListener{
 	private LoginControlador cont;
 	private JButton DELETE_BUTTON;
 	private JButton UPDATE_PRODUCT;
-	private JButton btnNewButton;
+	private JButton IMPORT_PRODUCT;
 
 	public OpcionesTrabajador(LoginControlador cont) {
 		setModal(rootPaneCheckingEnabled);
@@ -58,12 +58,13 @@ public class OpcionesTrabajador extends JDialog implements ActionListener{
 		UPDATE_PRODUCT.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		UPDATE_PRODUCT.setBounds(110, 71, 200, 33);
 		contentPanel.add(UPDATE_PRODUCT);
-		
-		btnNewButton = new JButton("IMPORT PRODUCT");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnNewButton.setBounds(142, 156, 153, 33);
-		contentPanel.add(btnNewButton);
 		UPDATE_PRODUCT.addActionListener(this);
+
+		IMPORT_PRODUCT = new JButton("IMPORT PRODUCT");
+		IMPORT_PRODUCT.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		IMPORT_PRODUCT.setBounds(142, 156, 153, 33);
+		contentPanel.add(IMPORT_PRODUCT);
+		IMPORT_PRODUCT.addActionListener(this);
 
 	}
 
@@ -79,8 +80,13 @@ public class OpcionesTrabajador extends JDialog implements ActionListener{
 			UpdateProductPrice v= new UpdateProductPrice(cont);
 			v.setVisible(true);
 		}
+		if(e.getSource()==IMPORT_PRODUCT) {
+			ImportProduct v= new ImportProduct(cont);
+			v.setVisible(true);
+		}
 
 	}
-
+	
+	
 	
 }

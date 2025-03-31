@@ -52,7 +52,7 @@ public class DeleteProduct extends JDialog implements ActionListener{
 		{
 			DeletedProductLabel = new JLabel("");
 			DeletedProductLabel.setHorizontalAlignment(SwingConstants.CENTER);
-			DeletedProductLabel.setBounds(99, 162, 237, 26);
+			DeletedProductLabel.setBounds(68, 161, 309, 26);
 			contentPanel.add(DeletedProductLabel);
 		}
 		

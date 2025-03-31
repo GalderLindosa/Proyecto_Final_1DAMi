@@ -11,4 +11,5 @@ public interface UsuarioDAO {
 	public Map<String, Product> MostrarProducto();
 	public boolean modificarPrecio(Product producto);
 	public boolean deleteProduct (String string);
+	public boolean insertProduct(Product producto);
 }

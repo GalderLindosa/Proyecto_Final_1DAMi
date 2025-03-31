@@ -48,7 +48,7 @@ public class OpcionesCliente extends JDialog implements ActionListener {
 		contentPanel.setLayout(null);
 
 		comboBox = new JComboBox <String> ();
-		comboBox.setBounds(122, 100, 170, 21);
+		comboBox.setBounds(10, 100, 416, 21);
 		contentPanel.add(comboBox);
 		cargarProd();
 
@@ -80,7 +80,7 @@ public class OpcionesCliente extends JDialog implements ActionListener {
 		if(!mapa.isEmpty()) {
 			comboBox.setSelectedIndex(-1);
 			for(Product a : mapa.values()) {
-				comboBox.addItem(a.getproduct_name());
+				comboBox.addItem(a.toString());
 			}
 		}
 		comboBox.setSelectedIndex(-1);

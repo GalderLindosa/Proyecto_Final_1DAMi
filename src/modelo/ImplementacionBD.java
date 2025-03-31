@@ -28,7 +28,8 @@ public class ImplementacionBD implements UsuarioDAO{
 	final String sql1 = "SELECT * FROM workers WHERE id_w = ? AND password_w = ?"; 
 	final String SQLDUpdateProduct = "UPDATE products SET prize =? WHERE id_p =?"; //ModificarProducto 
 
-	final String sqlInsert = "INSERT INTO CLIENTS VALUES (?,?)";
+	final String sqlInsertClient = "INSERT INTO CLIENTS VALUES (?,?,?)";
+	final String sqlInsertProduct = "INSERT INTO PRODUCTS VALUES (?,?,?,?)";
 	final String SQLCONSULTA = "SELECT * FROM products";
 	final String SQLDELETEPRODUCT = "DELETE FROM products WHERE id_p=?";
 	final String SQLMODIFICAR = "UPDATE usuario SET contrasena=? WHERE nombre=?";
@@ -134,7 +135,7 @@ public class ImplementacionBD implements UsuarioDAO{
 		return existe;
 	}
 
-	public boolean insertClient(Client client) {
+	public boolean insertClient(Client client) { //añadirTrabajador (1)
 		// TODO Auto-generated method stub
 		boolean ok=false;
 		if (!checkClient2(client))
@@ -143,7 +144,8 @@ public class ImplementacionBD implements UsuarioDAO{
 			try {
 				// Preparamos la sentencia stmt con la conexion y sentencia sql correspondiente
 
-				stmt = con.prepareStatement(sqlInsert);
+				stmt = con.prepareStatement(sqlInsertClient);
+				stmt.setInt(1, client.getclient_id());
 				stmt.setString(2, client.getclient_name());
 				stmt.setString(3, client.getclient_password());
 				if (stmt.executeUpdate()>0) {
@@ -158,6 +160,33 @@ public class ImplementacionBD implements UsuarioDAO{
 		}
 		return ok;
 
+	}
+	
+	public boolean insertProduct(Product producto) { //añadirTrabajador (1)
+		// TODO Auto-generated method stub
+		boolean ok=false;
+		
+			this.openConnection();
+			try {
+				// Preparamos la sentencia stmt con la conexion y sentencia sql correspondiente
+
+				stmt = con.prepareStatement(sqlInsertProduct);
+				stmt.setString(1, producto.getproduct_id());
+				stmt.setString(2, producto.getproduct_name());
+				stmt.setDouble(3, producto.getprice());
+				stmt.setInt(4, producto.getStock());
+				stmt.setLong(5,producto.getcategory());
+				if (stmt.executeUpdate()>0) {
+					ok=true;
+				}
+
+				stmt.close();
+				con.close();
+			} catch (SQLException e) {
+				System.out.println("Error al verificar credenciales: " + e.getMessage());
+			}
+		
+		return ok;
 
 	}
 

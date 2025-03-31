@@ -33,6 +33,7 @@ public class SignUpClient extends JFrame implements ActionListener{
 	private JLabel creado;
 
 	public SignUpClient(LoginControlador cont) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(SignUpClient.class.getResource("/images/media-markt-1.png")));
 		
 		this.cont=cont;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -76,7 +77,7 @@ public class SignUpClient extends JFrame implements ActionListener{
 		CompleteSIgnUpButton.addActionListener(this);
 		
 		creado = new JLabel("");
-		creado.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		creado.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		creado.setHorizontalAlignment(SwingConstants.CENTER);
 		creado.setBounds(10, 263, 354, 34);
 		contentPane.add(creado);
