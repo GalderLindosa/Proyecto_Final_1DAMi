@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.TreeMap;
 
-public class ImplementacionBD implements UsuarioDAO{
+public class ImplementacionBD implements UserDAO{
 	// Atributos
 	private Connection con;
 	private PreparedStatement stmt;

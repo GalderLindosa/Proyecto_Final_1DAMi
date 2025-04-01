@@ -2,7 +2,7 @@ package modelo;
 
 import java.util.Map;
 
-public interface UsuarioDAO {
+public interface UserDAO {
 	public boolean comprobarCliente(Client client);
 	public boolean comprobarTrabajador(Worker worker);
 	public boolean insertClient(Client client);
