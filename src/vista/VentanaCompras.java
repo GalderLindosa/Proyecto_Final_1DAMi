@@ -32,7 +32,6 @@ public class VentanaCompras extends JDialog implements ActionListener {
 
 
 	public VentanaCompras(OpcionesCliente opcionesCliente, LoginControlador cont, int id) {
-		setUndecorated(true);
 		this.cont =cont;
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
@@ -49,14 +48,8 @@ public class VentanaCompras extends JDialog implements ActionListener {
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblNewLabel.setBounds(10, 78, 141, 34);
 		contentPanel.add(lblNewLabel);
-
-		btnClose = new JButton("X");
-		btnClose.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnClose.setBounds(468, 0, 49, 31);
-		contentPanel.add(btnClose);
-		btnClose.addActionListener(this);
-
 		cargarCompras();
+		
 	}
 
 
@@ -76,9 +69,6 @@ public class VentanaCompras extends JDialog implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if (e.getSource()==btnClose) {
-			dispose();
-		}
-		
+
 	}
 }

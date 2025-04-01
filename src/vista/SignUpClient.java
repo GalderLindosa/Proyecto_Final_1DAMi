@@ -31,10 +31,8 @@ public class SignUpClient extends JFrame implements ActionListener{
 	private JButton CompleteSIgnUpButton;
 	private LoginControlador cont;
 	private JLabel creado;
-	private JButton btnClose;
 
 	public SignUpClient(LoginControlador cont) {
-		setUndecorated(true);
 		this.cont=cont;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 628, 433);
@@ -81,12 +79,6 @@ public class SignUpClient extends JFrame implements ActionListener{
 		creado.setHorizontalAlignment(SwingConstants.CENTER);
 		creado.setBounds(212, 362, 166, 34);
 		contentPane.add(creado);
-
-		btnClose = new JButton("X");
-		btnClose.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnClose.setBounds(468, 0, 49, 31);
-		contentPane.add(btnClose);
-		btnClose.addActionListener(this);
 	}
 
 	@Override
@@ -98,9 +90,6 @@ public class SignUpClient extends JFrame implements ActionListener{
 			}
 			else {
 				creado.setText("No se ha creado");
-			}
-			if (e.getSource()==btnClose) {
-				dispose();
 			}
 		}
 	}

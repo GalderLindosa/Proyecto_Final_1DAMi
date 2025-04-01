@@ -29,7 +29,6 @@ public class OpcionesTrabajador extends JDialog implements ActionListener{
 	private JButton btnClose;
 
 	public OpcionesTrabajador(LoginControlador cont) {
-		setUndecorated(true);
 		setTitle("AAAAAAAA");
 		this.cont=cont;
 		setBounds(100, 100, 450, 300);
