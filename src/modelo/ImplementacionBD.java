@@ -29,7 +29,7 @@ public class ImplementacionBD implements UsuarioDAO{
 	final String SQLDUpdateProduct = "UPDATE products SET prize =? WHERE id_p =?"; //ModificarProducto 
 
 	final String sqlInsertClient = "INSERT INTO CLIENTS VALUES (?,?,?)";
-	final String sqlInsertProduct = "INSERT INTO PRODUCTS VALUES (?,?,?,?)";
+	final String sqlInsertProduct = "INSERT INTO PRODUCTS VALUES (?,?,?,?,?)";
 	final String SQLCONSULTA = "SELECT * FROM products";
 	final String SQLDELETEPRODUCT = "DELETE FROM products WHERE id_p=?";
 	final String SQLMODIFICAR = "UPDATE usuario SET contrasena=? WHERE nombre=?";
@@ -175,7 +175,7 @@ public class ImplementacionBD implements UsuarioDAO{
 				stmt.setString(2, producto.getproduct_name());
 				stmt.setDouble(3, producto.getprice());
 				stmt.setInt(4, producto.getStock());
-				stmt.setLong(5,producto.getcategory());
+				stmt.setString(5, producto.getcategory());
 				if (stmt.executeUpdate()>0) {
 					ok=true;
 				}

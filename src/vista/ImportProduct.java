@@ -44,14 +44,14 @@ public class ImportProduct extends JDialog implements ActionListener{
 	private JLabel WelcomeLabel;
 	private Product_Category categoria;
 	private Map<String, Product> mapa;
-
+	private JLabel importedlabel;
 
 	public ImportProduct(LoginControlador cont) {
 		setModal(rootPaneCheckingEnabled);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(ImportProduct.class.getResource("/images/media-markt-1.png")));
 		this.cont=cont;
 		setModal(rootPaneCheckingEnabled);
-		setBounds(100, 100, 450, 483);
+		setBounds(100, 100, 450, 522);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -122,13 +122,21 @@ public class ImportProduct extends JDialog implements ActionListener{
 
 		ProductCategory = new JComboBox();
 		ProductCategory.setModel(new DefaultComboBoxModel(Product_Category.values()));
+		ProductCategory.setSelectedIndex(0);
 		ProductCategory.setToolTipText("");
 		ProductCategory.setBounds(210, 346, 200, 28);
 		contentPanel.add(ProductCategory);
+
 		AddButton = new JButton("Add product");
 		AddButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		AddButton.setBounds(137, 406, 162, 28);
+		AddButton.setBounds(129, 401, 162, 28);
 		contentPanel.add(AddButton);
+		
+		importedlabel = new JLabel("");
+		importedlabel.setHorizontalAlignment(SwingConstants.CENTER);
+		importedlabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		importedlabel.setBounds(25, 439, 368, 36);
+		contentPanel.add(importedlabel);
 		AddButton.addActionListener(this);
 	}
 
@@ -136,32 +144,26 @@ public class ImportProduct extends JDialog implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource()==AddButton) {
-			if(cont.insertProduct(new Product(ProductID.getText(), ProductName.getText(), (double) PriceSpinner.getValue(), (int) StockSpinner.getValue(), SetEnum(categoria)  ))) {
-
+			categoria=SetEnum();
+			if(cont.insertProduct(new Product(ProductID.getText(), ProductName.getText(), (double) PriceSpinner.getValue(), (int) StockSpinner.getValue(), categoria ))) {
+				importedlabel.setText("SE HA IMPORTADO EL ERROR CORRECTAMENTE");
+			}
+			else {
+				importedlabel.setText("ERROR, NO SE HA PODIDDO IMPORTAR EL OBJETO A LA TIENDA");
 			}
 		}
 	}
 
-	public Product_Category SetEnum(Product_Category categoria) {
-		if(ProductCategory.getToolTipText().equalsIgnoreCase("HOME APPLIANCES")) {
+	public Product_Category SetEnum() {
+		if(ProductCategory.getSelectedItem().toString()=="HOME APPLIANCES") {
 			categoria= Product_Category.HOME_APPLIANCES;
 		}
-		if(ProductCategory.getToolTipText().equalsIgnoreCase("COMPUTING")) {
+		if(ProductCategory.getSelectedItem().toString().equalsIgnoreCase("COMPUTING")) {
 			categoria= Product_Category.COMPUTING;
 		}
-		if(ProductCategory.getToolTipText().equalsIgnoreCase("HOME")) {
-			categoria= Product_Category.HOME;
+		if(ProductCategory.getSelectedItem().toString().equalsIgnoreCase("HOME")) {
+			categoria = Product_Category.HOME;
 		}
 		return categoria;
-	}
-	public void cargarProd() {
-		mapa=cont.MostrarProducto();
-		if(!mapa.isEmpty()) {
-			ProductCategory.setSelectedIndex(-1);
-			for(Product a : mapa.values()) {
-				ProductCategory.addItem(a.getcategory());
-			}
-		}
-		ProductCategory.setSelectedIndex(-1);
 	}
 }

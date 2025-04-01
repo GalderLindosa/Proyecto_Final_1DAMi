@@ -29,7 +29,7 @@ public class OpcionesTrabajador extends JDialog implements ActionListener{
 	private JButton DELETE_BUTTON;
 	private JButton UPDATE_PRODUCT;
 	private JButton IMPORT_PRODUCT;
-
+	
 	public OpcionesTrabajador(LoginControlador cont) {
 		setModal(rootPaneCheckingEnabled);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(OpcionesTrabajador.class.getResource("/images/media-markt-1.png")));
@@ -50,7 +50,7 @@ public class OpcionesTrabajador extends JDialog implements ActionListener{
 
 		DELETE_BUTTON = new JButton("DELETE PRODUCT");
 		DELETE_BUTTON.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		DELETE_BUTTON.setBounds(142, 113, 153, 33);
+		DELETE_BUTTON.setBounds(131, 113, 153, 33);
 		contentPanel.add(DELETE_BUTTON);
 		DELETE_BUTTON.addActionListener(this);
 
@@ -62,7 +62,7 @@ public class OpcionesTrabajador extends JDialog implements ActionListener{
 
 		IMPORT_PRODUCT = new JButton("IMPORT PRODUCT");
 		IMPORT_PRODUCT.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		IMPORT_PRODUCT.setBounds(142, 156, 153, 33);
+		IMPORT_PRODUCT.setBounds(131, 156, 153, 33);
 		contentPanel.add(IMPORT_PRODUCT);
 		IMPORT_PRODUCT.addActionListener(this);
 

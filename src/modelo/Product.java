@@ -68,12 +68,24 @@ public class Product {
 		this.stock = stock;
 	}
 
-	public Product_Category getcategory() {
-		return category;
+	public String getcategory() {
+		String categoria = null;
+		
+		if(category==Product_Category.HOME_APPLIANCES) {
+			categoria= "HOME_APPLIANCES";
+		}
+		if(category==Product_Category.COMPUTING) {
+			categoria= "COMPUTING";
+		}
+		if(category== Product_Category.HOME) {
+			categoria ="HOME";
+		}
+		return categoria;
 	}
 
 	public void setcategory(Product_Category category) {
-		this.category = category;
+		this.category=category;
+		
 	}
 
 
