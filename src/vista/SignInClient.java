@@ -27,8 +27,8 @@ public class SignInClient extends JFrame implements ActionListener{
 	private JLabel SignInLabel;
 	private JLabel WriteIDLabel;
 	private JLabel WritePasswordLabel;
-	private JPasswordField passwordField;
-	private JLabel lblNewLabel;
+	private JPasswordField ClientPasswordField;
+	private JLabel LoginErrorLabel;
 	int id;
 
 	public SignInClient(LoginControlador cont) {
@@ -73,15 +73,15 @@ public class SignInClient extends JFrame implements ActionListener{
 		contentPane.add(SignInClient);
 		SignInClient.addActionListener(this);
 
-		passwordField = new JPasswordField();
-		passwordField.setBounds(266, 123, 96, 19);
-		contentPane.add(passwordField);
+		ClientPasswordField = new JPasswordField();
+		ClientPasswordField.setBounds(266, 123, 96, 19);
+		contentPane.add(ClientPasswordField);
 		
-		lblNewLabel = new JLabel("");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel.setBounds(101, 211, 220, 28);
-		contentPane.add(lblNewLabel);
+		LoginErrorLabel = new JLabel("");
+		LoginErrorLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		LoginErrorLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		LoginErrorLabel.setBounds(101, 211, 220, 28);
+		contentPane.add(LoginErrorLabel);
 	}
 
 
@@ -89,13 +89,13 @@ public class SignInClient extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource()==SignInClient) {
-			if(cont.comprobarCliente(new Client (new String(passwordField.getPassword()), Integer.parseInt(IDField.getText())))){
+			if(cont.comprobarCliente(new Client (new String(ClientPasswordField.getPassword()), Integer.parseInt(IDField.getText())))){
 				id=Integer.parseInt(IDField.getText());
-				OpcionesCliente v= new OpcionesCliente(cont);
+				ClientOptions v= new ClientOptions(cont);
 				v.setVisible(true);
 			}
 			else {
-				lblNewLabel.setText("ERROR AL INICIAR SESION");
+				LoginErrorLabel.setText("ERROR AL INICIAR SESION");
 			}
 		}
 	}

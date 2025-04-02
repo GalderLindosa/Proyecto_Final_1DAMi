@@ -21,7 +21,7 @@ public class DeleteProduct extends JDialog implements ActionListener{
 
 	private final JPanel contentPanel = new JPanel();
 	private LoginControlador cont;
-	private JTextField textField;
+	private JTextField DeleteProductIDLabel;
 	private JLabel DeleteProductLable;
 	private JLabel DeletedProductLabel;
 	private JButton DeleteButton;
@@ -44,10 +44,10 @@ public class DeleteProduct extends JDialog implements ActionListener{
 			contentPanel.add(DeleteProductLable);
 		}
 		{
-			textField = new JTextField();
-			textField.setBounds(143, 77, 159, 26);
-			contentPanel.add(textField);
-			textField.setColumns(10);
+			DeleteProductIDLabel = new JTextField();
+			DeleteProductIDLabel.setBounds(143, 77, 159, 26);
+			contentPanel.add(DeleteProductIDLabel);
+			DeleteProductIDLabel.setColumns(10);
 		}
 		{
 			DeletedProductLabel = new JLabel("");
@@ -67,7 +67,7 @@ public class DeleteProduct extends JDialog implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getSource()==DeleteButton) {
-			if (cont.deleteProduct(textField.getText())) {
+			if (cont.deleteProduct(DeleteProductIDLabel.getText())) {
 				DeletedProductLabel.setText("Producto eliminado");
 			}else {
 				DeletedProductLabel.setText("ERROR, NO SE PUDO ELIMINAR EL PRODUCTO DE LA BASE DE DATOS");

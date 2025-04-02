@@ -44,7 +44,7 @@ public class ImportProduct extends JDialog implements ActionListener{
 	private JLabel WelcomeLabel;
 	private Product_Category categoria;
 	private Map<String, Product> mapa;
-	private JLabel importedlabel;
+	private JLabel Importedlabel;
 
 	public ImportProduct(LoginControlador cont) {
 		setModal(rootPaneCheckingEnabled);
@@ -122,7 +122,6 @@ public class ImportProduct extends JDialog implements ActionListener{
 
 		ProductCategory = new JComboBox();
 		ProductCategory.setModel(new DefaultComboBoxModel(Product_Category.values()));
-		ProductCategory.setSelectedIndex(0);
 		ProductCategory.setToolTipText("");
 		ProductCategory.setBounds(210, 346, 200, 28);
 		contentPanel.add(ProductCategory);
@@ -132,11 +131,11 @@ public class ImportProduct extends JDialog implements ActionListener{
 		AddButton.setBounds(129, 401, 162, 28);
 		contentPanel.add(AddButton);
 		
-		importedlabel = new JLabel("");
-		importedlabel.setHorizontalAlignment(SwingConstants.CENTER);
-		importedlabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		importedlabel.setBounds(25, 439, 368, 36);
-		contentPanel.add(importedlabel);
+		Importedlabel = new JLabel("");
+		Importedlabel.setHorizontalAlignment(SwingConstants.CENTER);
+		Importedlabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		Importedlabel.setBounds(25, 439, 368, 36);
+		contentPanel.add(Importedlabel);
 		AddButton.addActionListener(this);
 	}
 
@@ -146,17 +145,18 @@ public class ImportProduct extends JDialog implements ActionListener{
 		if(e.getSource()==AddButton) {
 			categoria=SetEnum();
 			if(cont.insertProduct(new Product(ProductID.getText(), ProductName.getText(), (double) PriceSpinner.getValue(), (int) StockSpinner.getValue(), categoria ))) {
-				importedlabel.setText("SE HA IMPORTADO EL ERROR CORRECTAMENTE");
+				Importedlabel.setText("SE HA IMPORTADO EL ERROR CORRECTAMENTE");
 			}
 			else {
-				importedlabel.setText("ERROR, NO SE HA PODIDDO IMPORTAR EL OBJETO A LA TIENDA");
+				Importedlabel.setText("ERROR, NO SE HA PODIDDO IMPORTAR EL OBJETO A LA TIENDA");
 			}
 		}
 	}
 
 	public Product_Category SetEnum() {
-		if(ProductCategory.getSelectedItem().toString()=="HOME APPLIANCES") {
-			categoria= Product_Category.HOME_APPLIANCES;
+
+		if(ProductCategory.getSelectedItem().toString()=="HOMEAPPLIANCES") {
+			categoria= Product_Category.HOMEAPPLIANCES;
 		}
 		if(ProductCategory.getSelectedItem().toString().equalsIgnoreCase("COMPUTING")) {
 			categoria= Product_Category.COMPUTING;

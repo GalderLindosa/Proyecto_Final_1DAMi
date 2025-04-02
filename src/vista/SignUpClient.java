@@ -30,7 +30,7 @@ public class SignUpClient extends JFrame implements ActionListener{
 	private JLabel PasswordLabel;
 	private JButton CompleteSIgnUpButton;
 	private LoginControlador cont;
-	private JLabel creado;
+	private JLabel CreatedUserLabel;
 
 	public SignUpClient(LoginControlador cont) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(SignUpClient.class.getResource("/images/media-markt-1.png")));
@@ -76,11 +76,11 @@ public class SignUpClient extends JFrame implements ActionListener{
 		contentPane.add(CompleteSIgnUpButton);
 		CompleteSIgnUpButton.addActionListener(this);
 		
-		creado = new JLabel("");
-		creado.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		creado.setHorizontalAlignment(SwingConstants.CENTER);
-		creado.setBounds(10, 263, 354, 34);
-		contentPane.add(creado);
+		CreatedUserLabel = new JLabel("");
+		CreatedUserLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		CreatedUserLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		CreatedUserLabel.setBounds(10, 263, 354, 34);
+		contentPane.add(CreatedUserLabel);
 	}
 
 	@Override
@@ -88,11 +88,11 @@ public class SignUpClient extends JFrame implements ActionListener{
 		// TODO Auto-generated method stub
 		if(e.getSource()==CompleteSIgnUpButton) {
 			if(cont.insertClient(new Client(introduceNameTextField.getText(), new String(IntroducePasswordTextField.getPassword())))) {
-				OpcionesCliente v= new OpcionesCliente(cont);
+				ClientOptions v= new ClientOptions(cont);
 				v.setVisible(true);
 			}
 			else {
-				creado.setText("ERROR, NO SE HA PODIDO CREAR EL USUARIO");
+				CreatedUserLabel.setText("ERROR, NO SE HA PODIDO CREAR EL USUARIO");
 			}
 		}
 	}

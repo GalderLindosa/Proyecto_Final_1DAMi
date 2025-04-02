@@ -70,9 +70,9 @@ public class Product {
 
 	public String getcategory() {
 		String categoria = null;
-		
-		if(category==Product_Category.HOME_APPLIANCES) {
-			categoria= "HOME_APPLIANCES";
+
+		if(category==Product_Category.HOMEAPPLIANCES) {
+			categoria= "HOMEAPPLIANCES";
 		}
 		if(category==Product_Category.COMPUTING) {
 			categoria= "COMPUTING";
