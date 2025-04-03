@@ -57,12 +57,15 @@ public class UpdateProductPrice extends JDialog implements ActionListener{
 		
 		Update_button = new JButton("UPDATE");
 		Update_button.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		Update_button.setBounds(183, 264, 196, 43);
+		Update_button.setBounds(183, 254, 156, 35);
 		contentPanel.add(Update_button);
 		Update_button.addActionListener(this);
+		
+		
 		PriceUpdatedLabel = new JLabel("");
+		PriceUpdatedLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		PriceUpdatedLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		PriceUpdatedLabel.setBounds(144, 312, 312, 27);
+		PriceUpdatedLabel.setBounds(59, 299, 418, 40);
 		contentPanel.add(PriceUpdatedLabel);
 		
 		ProductIDLabel = new JLabel("Enter the product ID");
@@ -98,7 +101,7 @@ public class UpdateProductPrice extends JDialog implements ActionListener{
 
 			}
 			else {
-				PriceUpdatedLabel.setText("ERROR, Precio no modificado");
+				PriceUpdatedLabel.setText("ERROR, NO SE PUDO MODIFICAR EL PRECIO");
 			}
 		}
 	}

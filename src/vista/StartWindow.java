@@ -30,10 +30,10 @@ public class StartWindow extends JFrame implements ActionListener{
 	private LoginControlador cont;
 	private JButton InfoButtonWorker;
 	private JButton InfoButtonClient;
-	
+
 
 	public StartWindow(LoginControlador cont) {
-		
+
 		setIconImage(Toolkit.getDefaultToolkit().getImage(StartWindow.class.getResource("/images/media-markt-1.png")));
 		this.cont=cont;
 		setTitle("Opening page");
@@ -44,38 +44,44 @@ public class StartWindow extends JFrame implements ActionListener{
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		IntroLabel = new JLabel("Choose the type of user you will log with");
 		IntroLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		IntroLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		IntroLabel.setBounds(56, 41, 390, 45);
+		IntroLabel.setBounds(61, 52, 390, 45);
 		contentPane.add(IntroLabel);
-		
+
 		BotonLoginWorker = new JButton("WORKER");
 		BotonLoginWorker.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		BotonLoginWorker.setBounds(115, 151, 258, 78);
+		BotonLoginWorker.setBounds(110, 166, 258, 78);
 		contentPane.add(BotonLoginWorker);
 		BotonLoginWorker.addActionListener(this);
-		
+
 		BotonLoginClient = new JButton("CLIENT");
 		BotonLoginClient.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		BotonLoginClient.setBounds(115, 282, 258, 78);
+		BotonLoginClient.setBounds(110, 286, 258, 78);
 		contentPane.add(BotonLoginClient);
 		BotonLoginClient.addActionListener(this);
 
 		InfoButtonWorker = new JButton("");
 		InfoButtonWorker.setIcon(new ImageIcon(StartWindow.class.getResource("/images/info.png")));
-		InfoButtonWorker.setBounds(380, 110, 40, 40);
+		InfoButtonWorker.setBounds(378, 132, 40, 40);
 		contentPane.add(InfoButtonWorker);
 		InfoButtonWorker.addActionListener(this);
 
 		InfoButtonClient = new JButton("");
 		InfoButtonClient.setIcon(new ImageIcon(StartWindow.class.getResource("/images/info.png")));
-		InfoButtonClient.setBounds(380, 247, 40, 40);
+		InfoButtonClient.setBounds(375, 250, 40, 40);
 		contentPane.add(InfoButtonClient);
 		InfoButtonClient.addActionListener(this);
+
+
+
+
+
 		
 	}
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

@@ -33,6 +33,7 @@ public class SignUpClient extends JFrame implements ActionListener{
 	private JLabel CreatedUserLabel;
 
 	public SignUpClient(LoginControlador cont) {
+		setTitle("Client Sign Up");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(SignUpClient.class.getResource("/images/media-markt-1.png")));
 		
 		this.cont=cont;

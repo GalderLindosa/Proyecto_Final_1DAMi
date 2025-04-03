@@ -25,6 +25,7 @@ import javax.swing.JComboBox;
 import java.awt.Toolkit;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.JScrollBar;
 
 public class ImportProduct extends JDialog implements ActionListener{
 
@@ -47,11 +48,12 @@ public class ImportProduct extends JDialog implements ActionListener{
 	private JLabel Importedlabel;
 
 	public ImportProduct(LoginControlador cont) {
+		setTitle("Product import page");
 		setModal(rootPaneCheckingEnabled);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(ImportProduct.class.getResource("/images/media-markt-1.png")));
 		this.cont=cont;
 		setModal(rootPaneCheckingEnabled);
-		setBounds(100, 100, 450, 522);
+		setBounds(100, 100, 450, 475);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -130,13 +132,13 @@ public class ImportProduct extends JDialog implements ActionListener{
 		AddButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		AddButton.setBounds(129, 401, 162, 28);
 		contentPanel.add(AddButton);
-		
+		AddButton.addActionListener(this);
+
 		Importedlabel = new JLabel("");
 		Importedlabel.setHorizontalAlignment(SwingConstants.CENTER);
 		Importedlabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		Importedlabel.setBounds(25, 439, 368, 36);
 		contentPanel.add(Importedlabel);
-		AddButton.addActionListener(this);
 	}
 
 	@Override
@@ -145,7 +147,7 @@ public class ImportProduct extends JDialog implements ActionListener{
 		if(e.getSource()==AddButton) {
 			categoria=SetEnum();
 			if(cont.insertProduct(new Product(ProductID.getText(), ProductName.getText(), (double) PriceSpinner.getValue(), (int) StockSpinner.getValue(), categoria ))) {
-				Importedlabel.setText("SE HA IMPORTADO EL ERROR CORRECTAMENTE");
+				Importedlabel.setText("SE HA IMPORTADO EL PRODUCTO CORRECTAMENTE");
 			}
 			else {
 				Importedlabel.setText("ERROR, NO SE HA PODIDDO IMPORTAR EL OBJETO A LA TIENDA");

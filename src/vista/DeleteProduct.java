@@ -51,8 +51,9 @@ public class DeleteProduct extends JDialog implements ActionListener{
 		}
 		{
 			DeletedProductLabel = new JLabel("");
+			DeletedProductLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 			DeletedProductLabel.setHorizontalAlignment(SwingConstants.CENTER);
-			DeletedProductLabel.setBounds(68, 161, 309, 26);
+			DeletedProductLabel.setBounds(25, 161, 385, 26);
 			contentPanel.add(DeletedProductLabel);
 		}
 		
@@ -60,6 +61,7 @@ public class DeleteProduct extends JDialog implements ActionListener{
 		DeleteButton.setBounds(141, 126, 161, 26);
 		contentPanel.add(DeleteButton);
 		DeleteButton.addActionListener(this);
+
 	}
 
 

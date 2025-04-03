@@ -80,7 +80,7 @@ public class SignInClient extends JFrame implements ActionListener{
 		LoginErrorLabel = new JLabel("");
 		LoginErrorLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		LoginErrorLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		LoginErrorLabel.setBounds(101, 211, 220, 28);
+		LoginErrorLabel.setBounds(21, 211, 405, 28);
 		contentPane.add(LoginErrorLabel);
 	}
 
@@ -95,7 +95,7 @@ public class SignInClient extends JFrame implements ActionListener{
 				v.setVisible(true);
 			}
 			else {
-				LoginErrorLabel.setText("ERROR AL INICIAR SESION");
+				LoginErrorLabel.setText("ERROR AL INICIAR SESION, EL ID O CONTRASEÑA SON INCORRECTOS");
 			}
 		}
 	}
