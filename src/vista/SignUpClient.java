@@ -88,7 +88,7 @@ public class SignUpClient extends JFrame implements ActionListener{
 		// TODO Auto-generated method stub
 		if(e.getSource()==CompleteSIgnUpButton) {
 			if(cont.insertClient(new Client(introduceNameTextField.getText(), new String(IntroducePasswordTextField.getPassword())))) {
-				ClientOptions v= new ClientOptions(cont);
+				ShowProducts v= new ShowProducts(cont);
 				v.setVisible(true);
 			}
 			else {

@@ -83,12 +83,10 @@ public class VentanaInicio extends JFrame implements ActionListener{
 		if(e.getSource()==BotonLoginWorker) {
 			VentanaLogingWorker v= new VentanaLogingWorker(cont);
 			v.setVisible(true);
-			dispose();
 		}
 		if(e.getSource()==BotonLoginClient) {
 			VentanaLogingClient v= new VentanaLogingClient(cont);
 			v.setVisible(true);
-			dispose();
 		}
 		if(e.getSource()==InfoButtonWorker) {
 			JOptionPane.showMessageDialog(this,(String)"This option takes you to the workers Login window","Info",JOptionPane.INFORMATION_MESSAGE,null);

@@ -2,7 +2,7 @@ package controlador;
 
 import modelo.ImplementacionBD;
 import modelo.Product;
-import modelo.UsuarioDAO;
+import modelo.UserDAO;
 import modelo.Worker;
 import vista.VentanaInicio;
 import vista.VentanaLogingClient;
@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 import java.util.Map;
 
 public class LoginControlador {
-	UsuarioDAO dao = new ImplementacionBD();
+	UserDAO dao = new ImplementacionBD();
 	
 	public void visualizarPantalla() {
 		VentanaInicio ven = new VentanaInicio(this);

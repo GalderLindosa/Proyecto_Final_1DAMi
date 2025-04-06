@@ -23,21 +23,22 @@ public class ImplementacionBD implements UserDAO{
 	private String passwordBD;
 
 	// Sentencias SQL
-
-	final String SQL = "SELECT * FROM clients WHERE ID_C = ? AND PASSWORD_C = ?";		
-	final String sql1 = "SELECT * FROM workers WHERE id_w = ? AND password_w = ?"; 
+	
+	final String comprobarCliente = "SELECT * FROM clients WHERE ID_C = ? AND PASSWORD_C = ?";	//(IniciarSesion Cliente)	(Hecho)
+	final String comprobarTrabajador = "SELECT * FROM workers WHERE id_w = ? AND password_w = ?"; //(IniciarSesion Trabajadores) (Hecho)
 	final String SQLDUpdateProduct = "UPDATE products SET prize =? WHERE id_p =?"; //ModificarProducto 
-
-	final String sqlInsertClient = "INSERT INTO CLIENTS VALUES (?,?,?)";
-	final String sqlInsertProduct = "INSERT INTO PRODUCTS VALUES (?,?,?,?,?)";
-	final String SQLCONSULTA = "SELECT * FROM products";
-	final String SQLDELETEPRODUCT = "DELETE FROM products WHERE id_p=?";
-	final String SQLMODIFICAR = "UPDATE usuario SET contrasena=? WHERE nombre=?";
+	final String SQLMostrarCompras ="SELECT BUYING_DATE, AMOUNT, NAME_C FROM BUYS JOIN CLIENTS ON BUYS.ID_C = CLIENTS.ID_C;"; //mostrarCompras (hecho)
+	final String sqlInsertClient = "INSERT INTO CLIENTS VALUES (?,?,?)";  //(CrearCliente) (Hecho)
+	final String sqlInsertProduct = "INSERT INTO PRODUCTS VALUES (?,?,?,?,?)"; //
+	final String SQLShowProducts = "SELECT * FROM products"; //mostraProducto
+	final String SQLDELETEPRODUCT = "DELETE FROM products WHERE id_p=?"; //BorrarProducto
+	final String SQLMODIFICAR = "UPDATE usuario SET contrasena=? WHERE nombre=?"; ////ModificarUsuario
+	
 
 	// Para la conexi n utilizamos un fichero de configuaraci n, config que
 	// guardamos en el paquete control:
 	public ImplementacionBD() {
-		this.configFile = ResourceBundle.getBundle("config");
+		this.configFile = ResourceBundle.getBundle("configClase");
 		this.driverBD = this.configFile.getString("Driver");
 		this.urlBD = this.configFile.getString("Conn");
 		this.userBD = this.configFile.getString("DBUser");
@@ -60,7 +61,7 @@ public class ImplementacionBD implements UserDAO{
 		boolean existe=false;
 		this.openConnection();
 		try {
-			stmt = con.prepareStatement(SQL);
+			stmt = con.prepareStatement(comprobarCliente);
 			stmt.setInt(1, client.getclient_id());
 			stmt.setString(2, client.getclient_password());
 			ResultSet resultado = stmt.executeQuery();
@@ -85,7 +86,7 @@ public class ImplementacionBD implements UserDAO{
 
 
 		try {
-			stmt = con.prepareStatement(sql1);
+			stmt = con.prepareStatement(comprobarTrabajador);
 			stmt.setString(1, worker.getId_trabajador());
 			stmt.setString(2, worker.getworker_password());
 			ResultSet resultado = stmt.executeQuery();
@@ -114,7 +115,7 @@ public class ImplementacionBD implements UserDAO{
 
 
 		try {
-			stmt = con.prepareStatement(sql1);
+			stmt = con.prepareStatement(comprobarTrabajador);
 			stmt.setInt(1, client.getclient_id());
 			ResultSet resultado = stmt.executeQuery();
 
@@ -201,7 +202,7 @@ public class ImplementacionBD implements UserDAO{
 		this.openConnection();
 
 		try {
-			stmt = con.prepareStatement(SQLCONSULTA);
+			stmt = con.prepareStatement(SQLShowProducts);
 
 			rs = stmt.executeQuery();
 

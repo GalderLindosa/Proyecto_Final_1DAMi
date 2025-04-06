@@ -91,7 +91,7 @@ public class SignInClient extends JFrame implements ActionListener{
 		if(e.getSource()==SignInClient) {
 			if(cont.comprobarCliente(new Client (new String(ClientPasswordField.getPassword()), Integer.parseInt(IDField.getText())))){
 				id=Integer.parseInt(IDField.getText());
-				ClientOptions v= new ClientOptions(cont);
+				ClientOptions v= new ClientOptions();
 				v.setVisible(true);
 			}
 			else {

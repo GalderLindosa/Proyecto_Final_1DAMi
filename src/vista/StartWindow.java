@@ -87,7 +87,7 @@ public class StartWindow extends JFrame implements ActionListener{
 		}
 		if(e.getSource()==BotonLoginClient) {
 			ClientLoginWindow v= new ClientLoginWindow(cont);
-			v.setVisible(true);
+			v.setVisible(true); 
 			dispose();
 		}
 		if(e.getSource()==InfoButtonWorker) {

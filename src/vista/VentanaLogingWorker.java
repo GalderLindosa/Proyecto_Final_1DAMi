@@ -90,7 +90,7 @@ public class VentanaLogingWorker extends JFrame implements ActionListener{
 		// TODO Auto-generated method stub
 		if(e.getSource()==LoginButton) {
 			if(cont.comprobarTrabajador(new Worker (new String(passwordField.getPassword()), WorkerIDtextField.getText()))){
-				OpcionesTrabajador v= new OpcionesTrabajador(cont);
+				WorkerOptions v= new WorkerOptions(cont);
 				v.setVisible(true);
 				dispose();
 			}

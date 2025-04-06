@@ -22,20 +22,20 @@ import java.awt.event.ActionListener;
 import java.util.Map;
 import java.awt.Toolkit;
 
-public class OpcionesCliente extends JDialog implements ActionListener {
+public class ShowProducts extends JDialog implements ActionListener {
 
 	private final JPanel contentPanel = new JPanel();
-	private JComboBox <String> comboBox;
-	private JLabel lblNewLabel;
+	private JComboBox <String> ProductComboBox;
+	private JLabel ClientWelcomeLabel;
 	private Map<String, Product> mapa;
 	private LoginControlador cont;
 	private JButton ShowProductsInfo;
 	int id;
 
-	public OpcionesCliente(LoginControlador cont) {
+	public ShowProducts(LoginControlador cont) {
 		setModal(rootPaneCheckingEnabled);
 		this.setModal(rootPaneCheckingEnabled);	
-		setIconImage(Toolkit.getDefaultToolkit().getImage(OpcionesCliente.class.getResource("/images/media-markt-1.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ShowProducts.class.getResource("/images/media-markt-1.png")));
 		setTitle("Clients options");
 		this.cont=cont;
 		this.id=id;
@@ -47,17 +47,17 @@ public class OpcionesCliente extends JDialog implements ActionListener {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 
-		comboBox = new JComboBox <String> ();
-		comboBox.setBounds(10, 100, 416, 21);
-		contentPanel.add(comboBox);
+		ProductComboBox = new JComboBox <String> ();
+		ProductComboBox.setBounds(10, 100, 416, 21);
+		contentPanel.add(ProductComboBox);
 		cargarProd();
 
-		lblNewLabel = new JLabel();
-		lblNewLabel.setText("BIENVENIDO/A!");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(35, 10, 376, 52);
-		contentPanel.add(lblNewLabel);
+		ClientWelcomeLabel = new JLabel();
+		ClientWelcomeLabel.setText("BIENVENIDO/A!");
+		ClientWelcomeLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		ClientWelcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		ClientWelcomeLabel.setBounds(35, 10, 376, 52);
+		contentPanel.add(ClientWelcomeLabel);
 
 		ShowProductsInfo = new JButton("Mostrar informacion del producto");
 		ShowProductsInfo.setBounds(10, 167, 184, 37);
@@ -78,11 +78,11 @@ public class OpcionesCliente extends JDialog implements ActionListener {
 	public void cargarProd() {
 		mapa=cont.MostrarProducto();
 		if(!mapa.isEmpty()) {
-			comboBox.setSelectedIndex(-1);
+			ProductComboBox.setSelectedIndex(-1);
 			for(Product a : mapa.values()) {
-				comboBox.addItem(a.toString());
+				ProductComboBox.addItem(a.toString());
 			}
 		}
-		comboBox.setSelectedIndex(-1);
+		ProductComboBox.setSelectedIndex(-1);
 	}
 }
