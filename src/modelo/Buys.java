@@ -5,11 +5,16 @@ import java.time.LocalDate;
 public class Buys {
 	private LocalDate buying_date;
 	private int amount;
-	
+
 	public Buys(LocalDate fecha, int amount) {
 		this.buying_date=fecha;
 		this.amount=amount;
 	}
+
+	public Buys() {
+		
+	}
+
 
 	public LocalDate getBuying_date() {
 		return buying_date;
@@ -33,6 +38,9 @@ public class Buys {
 	}
 
 
-	
-	
+
+
+
+
+
 }

@@ -28,6 +28,7 @@ public class VentanaInicio extends JFrame implements ActionListener{
 	private JButton BotonLoginWorker;
 	private JButton BotonLoginClient;
 	private LoginControlador cont;
+<<<<<<< HEAD
 	private JButton InfoButtonWorker;
 	private JButton InfoButtonClient;
 	
@@ -35,6 +36,14 @@ public class VentanaInicio extends JFrame implements ActionListener{
 	public VentanaInicio(LoginControlador cont) {
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaInicio.class.getResource("/images/media-markt-1.png")));
+=======
+	private JButton btnClose;
+
+
+
+	public VentanaInicio(LoginControlador cont) {
+		setUndecorated(true);
+>>>>>>> 522970e38f6e9225cf86e865c7be58833bf82481
 		this.cont=cont;
 		setTitle("Opening page");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,6 +71,7 @@ public class VentanaInicio extends JFrame implements ActionListener{
 		BotonLoginClient.setBounds(115, 282, 258, 78);
 		contentPane.add(BotonLoginClient);
 		BotonLoginClient.addActionListener(this);
+<<<<<<< HEAD
 
 		InfoButtonWorker = new JButton("");
 		InfoButtonWorker.setIcon(new ImageIcon(VentanaInicio.class.getResource("/images/info.png")));
@@ -75,6 +85,14 @@ public class VentanaInicio extends JFrame implements ActionListener{
 		contentPane.add(InfoButtonClient);
 		InfoButtonClient.addActionListener(this);
 		
+=======
+		
+		btnClose = new JButton("X");
+		btnClose.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnClose.setBounds(468, 0, 49, 31);
+		contentPane.add(btnClose);
+		btnClose.addActionListener(this);
+>>>>>>> 522970e38f6e9225cf86e865c7be58833bf82481
 	}
 
 	@Override
@@ -83,16 +101,25 @@ public class VentanaInicio extends JFrame implements ActionListener{
 		if(e.getSource()==BotonLoginWorker) {
 			VentanaLogingWorker v= new VentanaLogingWorker(cont);
 			v.setVisible(true);
+<<<<<<< HEAD
+=======
+			
+>>>>>>> 522970e38f6e9225cf86e865c7be58833bf82481
 		}
 		if(e.getSource()==BotonLoginClient) {
 			VentanaLogingClient v= new VentanaLogingClient(cont);
 			v.setVisible(true);
 		}
+<<<<<<< HEAD
 		if(e.getSource()==InfoButtonWorker) {
 			JOptionPane.showMessageDialog(this,(String)"This option takes you to the workers Login window","Info",JOptionPane.INFORMATION_MESSAGE,null);
 		}
 		if(e.getSource()==InfoButtonClient) {
 			JOptionPane.showMessageDialog(this,(String)"This option takes you to the client Login or Sign in window","Info",JOptionPane.INFORMATION_MESSAGE,null);
+=======
+		if (e.getSource()==btnClose) {
+			dispose();
+>>>>>>> 522970e38f6e9225cf86e865c7be58833bf82481
 		}
 	}
 }

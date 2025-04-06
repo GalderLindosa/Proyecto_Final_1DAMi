@@ -1,14 +1,27 @@
 package modelo;
 
+import java.util.ArrayList;
+
 public class Client {
 	private String client_name;
 	private String client_password;
 	private int client_id;
-	
+	private ArrayList <Buys> compras;
+
+
 	public Client(String cliente, String passwd) {
 		this.client_name=cliente;
 		this.client_password=passwd;
 	}
+	
+
+	public Client(String client_password, int client_id) {
+		super();
+		this.client_password = client_password;
+		this.client_id = client_id;
+	}
+
+
 
 	public Client (String passwd, int id) {
 		this.client_password=passwd;
@@ -48,5 +61,13 @@ public class Client {
 	public String toString() {
 		return "Bienvenido " + client_name;
 	}
-	
+
+	public ArrayList <Buys> getCompras() {
+		return compras;
+	}
+
+	public void setCompras(ArrayList <Buys> compras) {
+		this.compras = compras;
+	}
+
 }

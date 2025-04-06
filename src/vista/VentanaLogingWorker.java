@@ -17,7 +17,10 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
+<<<<<<< HEAD
 import java.awt.Toolkit;
+=======
+>>>>>>> 522970e38f6e9225cf86e865c7be58833bf82481
 
 public class VentanaLogingWorker extends JFrame implements ActionListener{
 
@@ -29,6 +32,7 @@ public class VentanaLogingWorker extends JFrame implements ActionListener{
 	private LoginControlador cont; 
 	private JPasswordField passwordField;
 	private JLabel workersIDlabel;
+<<<<<<< HEAD
 	private JLabel LoginErrorLabel;
 	
 	public VentanaLogingWorker(LoginControlador cont) {
@@ -36,6 +40,12 @@ public class VentanaLogingWorker extends JFrame implements ActionListener{
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaLogingWorker.class.getResource("/images/media-markt-1.png")));
 		this.cont=cont;
 		setTitle("Worker's login page");
+=======
+	
+	public VentanaLogingWorker(LoginControlador cont) {
+		this.cont=cont;
+		setTitle("Worker's login");
+>>>>>>> 522970e38f6e9225cf86e865c7be58833bf82481
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 511, 452);
 		contentPane = new JPanel();
@@ -74,6 +84,7 @@ public class VentanaLogingWorker extends JFrame implements ActionListener{
 		LoginButton.addActionListener(this);
 		
 		passwordField = new JPasswordField();
+<<<<<<< HEAD
 		passwordField.setBounds(139, 242, 198, 28);
 		contentPane.add(passwordField);
 		
@@ -82,12 +93,17 @@ public class VentanaLogingWorker extends JFrame implements ActionListener{
 		LoginErrorLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		LoginErrorLabel.setBounds(65, 348, 400, 34);
 		contentPane.add(LoginErrorLabel);
+=======
+		passwordField.setBounds(139, 279, 198, 28);
+		contentPane.add(passwordField);
+>>>>>>> 522970e38f6e9225cf86e865c7be58833bf82481
 	}
 
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+<<<<<<< HEAD
 		if(e.getSource()==LoginButton) {
 			if(cont.comprobarTrabajador(new Worker (new String(passwordField.getPassword()), WorkerIDtextField.getText()))){
 				WorkerOptions v= new WorkerOptions(cont);
@@ -97,6 +113,17 @@ public class VentanaLogingWorker extends JFrame implements ActionListener{
 			else {
 				LoginErrorLabel.setText("ERROR! Asegurese de que las credenciales son correctas");
 			}
+=======
+		System.out.println("ENTRO");
+		if(e.getSource()==LoginButton) {
+			System.out.println("AAAAAAAAA");
+			if(cont.comprobarTrabajador(new Worker (new String(passwordField.getPassword()), WorkerIDtextField.getText()))){
+				System.out.println("bbbbbbbb");
+				OpcionesTrabajador v= new OpcionesTrabajador(cont);
+				v.setVisible(true);
+				dispose();
+			}
+>>>>>>> 522970e38f6e9225cf86e865c7be58833bf82481
 		}
 	}
 }

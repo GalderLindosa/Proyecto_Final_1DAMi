@@ -1,8 +1,8 @@
 package modelo;
 
 import java.util.Map;
-
 import modelo.Product;
+
 
 public interface UserDAO {
 	public boolean comprobarCliente(Client client);
@@ -12,4 +12,6 @@ public interface UserDAO {
 	public boolean modificarPrecio(Product producto);
 	public boolean deleteProduct (String string);
 	public boolean insertProduct(Product producto);
+	public boolean borrarProducto(Product producto);
+	public Map<String,ShowBuys> mostrarCompras();
 }

@@ -23,7 +23,8 @@ public class ImplementacionBD implements UserDAO{
 	private String passwordBD;
 
 	// Sentencias SQL
-	
+
+
 	final String comprobarCliente = "SELECT * FROM clients WHERE ID_C = ? AND PASSWORD_C = ?";	//(IniciarSesion Cliente)	(Hecho)
 	final String comprobarTrabajador = "SELECT * FROM workers WHERE id_w = ? AND password_w = ?"; //(IniciarSesion Trabajadores) (Hecho)
 	final String SQLDUpdateProduct = "UPDATE products SET prize =? WHERE id_p =?"; //ModificarProducto 
@@ -33,7 +34,18 @@ public class ImplementacionBD implements UserDAO{
 	final String SQLShowProducts = "SELECT * FROM products"; //mostraProducto
 	final String SQLDELETEPRODUCT = "DELETE FROM products WHERE id_p=?"; //BorrarProducto
 	final String SQLMODIFICAR = "UPDATE usuario SET contrasena=? WHERE nombre=?"; ////ModificarUsuario
+	final String SQLLoginCliente = "SELECT * FROM clients WHERE id_c = ? AND password_c = ?";	//(IniciarSesion Cliente)	(Hecho)
+	final String SQLLoginTrabajador = "SELECT * FROM workers WHERE name_w = ? AND password_w = ?";  //(IniciarSesion Trabajadores) (Hecho)
+	final String SQLDeleteCliente = "DELETE FROM client WHERE id_c=?"; //BorrarCliente
+	final String SQLDeleteProduct = "DELETE FROM product where id_p=?"; //BorrarProducto
 	
+
+	/*Cliente tiene la posibilidad de ver y comprar producto, ambas se separan en un boton cada uno, la cual manda cada una a un dialog
+		 En el apartado de comprar producto se va a usar el procedimiento almacenado que es obligatorio usar en el reto.
+		 Los trabajadores tendran la oportunidad de modificar precio del producto y elminiar el producto, siempre cuando hayan iniciado sesion 
+		 desde el apartado que les pertenece. La unica diferencia que hay a la hora 
+	 */
+
 
 	// Para la conexi n utilizamos un fichero de configuaraci n, config que
 	// guardamos en el paquete control:
@@ -62,6 +74,8 @@ public class ImplementacionBD implements UserDAO{
 		this.openConnection();
 		try {
 			stmt = con.prepareStatement(comprobarCliente);
+
+			stmt = con.prepareStatement(SQLLoginCliente);
 			stmt.setInt(1, client.getclient_id());
 			stmt.setString(2, client.getclient_password());
 			ResultSet resultado = stmt.executeQuery();
@@ -88,6 +102,8 @@ public class ImplementacionBD implements UserDAO{
 		try {
 			stmt = con.prepareStatement(comprobarTrabajador);
 			stmt.setString(1, worker.getId_trabajador());
+			stmt = con.prepareStatement(SQLLoginTrabajador);
+			stmt.setString(1, worker.getworker_name());
 			stmt.setString(2, worker.getworker_password());
 			ResultSet resultado = stmt.executeQuery();
 
@@ -108,6 +124,7 @@ public class ImplementacionBD implements UserDAO{
 		return existe;
 	}
 
+
 	public boolean checkClient2(Client client){
 		// Abrimos la conexion
 		boolean existe=false;
@@ -115,15 +132,19 @@ public class ImplementacionBD implements UserDAO{
 
 
 		try {
+
+
 			stmt = con.prepareStatement(comprobarTrabajador);
 			stmt.setInt(1, client.getclient_id());
+			stmt = con.prepareStatement(sqlInsertClient);
+			stmt.setInt(1, client.getclient_id());
+			stmt.setString(1,client.getclient_password());
 			ResultSet resultado = stmt.executeQuery();
 
 			//Si hay un resultado, el usuario existe
 			if (resultado.next()) {
 				existe = true;
 			}
-
 
 			resultado.close();
 			stmt.close();
@@ -135,6 +156,8 @@ public class ImplementacionBD implements UserDAO{
 
 		return existe;
 	}
+
+
 
 	public boolean insertClient(Client client) { //añadirTrabajador (1)
 		// TODO Auto-generated method stub
@@ -149,6 +172,9 @@ public class ImplementacionBD implements UserDAO{
 				stmt.setInt(1, client.getclient_id());
 				stmt.setString(2, client.getclient_name());
 				stmt.setString(3, client.getclient_password());
+				stmt.setString(2, client.getclient_name());
+				stmt.setString(3, client.getclient_password());
+				stmt.setInt(1, client.getclient_id());
 				if (stmt.executeUpdate()>0) {
 					ok=true;
 				}
@@ -162,31 +188,32 @@ public class ImplementacionBD implements UserDAO{
 		return ok;
 
 	}
-	
+
+
 	public boolean insertProduct(Product producto) { //añadirTrabajador (1)
 		// TODO Auto-generated method stub
 		boolean ok=false;
-		
-			this.openConnection();
-			try {
-				// Preparamos la sentencia stmt con la conexion y sentencia sql correspondiente
 
-				stmt = con.prepareStatement(sqlInsertProduct);
-				stmt.setString(1, producto.getproduct_id());
-				stmt.setString(2, producto.getproduct_name());
-				stmt.setDouble(3, producto.getprice());
-				stmt.setInt(4, producto.getStock());
-				stmt.setString(5, producto.getcategory());
-				if (stmt.executeUpdate()>0) {
-					ok=true;
-				}
+		this.openConnection();
+		try {
+			// Preparamos la sentencia stmt con la conexion y sentencia sql correspondiente
 
-				stmt.close();
-				con.close();
-			} catch (SQLException e) {
-				System.out.println("Error al verificar credenciales: " + e.getMessage());
+			stmt = con.prepareStatement(sqlInsertProduct);
+			stmt.setString(1, producto.getproduct_id());
+			stmt.setString(2, producto.getproduct_name());
+			stmt.setDouble(3, producto.getprice());
+			stmt.setInt(4, producto.getStock());
+			stmt.setString(5, producto.getcategory());
+			if (stmt.executeUpdate()>0) {
+				ok=true;
 			}
-		
+
+			stmt.close();
+			con.close();
+		} catch (SQLException e) {
+			System.out.println("Error al verificar credenciales: " + e.getMessage());
+		}
+
 		return ok;
 
 	}
@@ -215,62 +242,156 @@ public class ImplementacionBD implements UserDAO{
 				producto.setStock(rs.getInt("STOCK"));
 				productos.put(producto.getproduct_name(), producto);
 			}
-			rs.close();
-			stmt.close();
-			con.close();
-		} catch (SQLException e) {
-			System.out.println("Error de SQL");
-			e.printStackTrace();
-		}
-		return productos;
 
-	}	
 
-	public boolean modificarPrecio(Product producto) { //MODIFICAR
-		// TODO Auto-generated method stub
-		boolean ok=false;
-		this.openConnection();
-		try {
-			// Preparamos la sentencia stmt con la conexion y sentencia sql correspondiente
-			stmt = con.prepareStatement(SQLDUpdateProduct);
-			stmt.setString(2, producto.getproduct_id());
-			stmt.setDouble(1, producto.getprice());
-			if (stmt.executeUpdate()>0) {
-				ok=true;
-			}
-			stmt.close();
-			con.close();
-		} catch (SQLException e) {
-			System.out.println("Error al verificar credenciales: " + e.getMessage());
-		}
-		return ok;						
-	}
 
-	public boolean deleteProduct (String producto) {
-		// Abrimos la conexion
-		boolean existe=false;
-		this.openConnection();
 
-		try {
-			stmt = con.prepareStatement(SQLDELETEPRODUCT);
-			stmt.setString(1, producto);
-			if(stmt.executeUpdate()>0) {
-				existe=true;
+			public Map<String,ShowBuys> mostrarCompras() { //visualizar
+				// TODO Auto-generated method stub
+				// Me ha dicho que lo mejor es hacer otra clase porque cojo muchos datos, me ha dicho Leire que a ella le paso lo mismo preparando el examen.
+				ResultSet rs = null;
+				ShowBuys compra;
+				Map<String, ShowBuys> compras = new TreeMap<>();
+
+
+				// Abrimos la conexion
+				this.openConnection();
+
+				try {
+					stmt = con.prepareStatement(SQLMostrarCompras);
+
+					rs = stmt.executeQuery();
+
+					// Leemos de uno en uno
+					while (rs.next()) {
+						compra = new ShowBuys(); 
+						compra.setBuying_Date(rs.getDate("BUYING_DATE")); //hay que ponerle date, y si pregunta ponerle SQL date
+						compra.setProduct_amount(rs.getInt("AMOUNT"));
+						compras.put(rs.getString("NAME_C"), compra);
+						// unica alternativa que he conseguido por parte de la IA,ha sido claude la que me ha dado la solucion 
+					} 
+
+					rs.close();
+					stmt.close();
+					con.close();
+				} catch (SQLException e) {
+					System.out.println("Error de SQL");
+					e.printStackTrace();
+				}
+				return compras;
+
 			}
 
+//			public Map<String, Product> MostrarProducto() {
+//				// TODO Auto-generated method stub
+//
+//				ResultSet rs = null;
+//				Product producto;
+//				Map<String, Product> productos = new TreeMap<>();
+//
+//				// Abrimos la conexion
+//				this.openConnection();
+//
+//				try {
+//					stmt = con.prepareStatement(SQLShowProducts);
+//
+//					rs = stmt.executeQuery();
+//
+//					// Leemos de uno en uno
+//					while (rs.next()) {
+//						producto = new Product();
+//						producto.setproduct_name(rs.getString("NAME_P"));
+//						producto.setprice(rs.getDouble("PRIZE"));
+//						producto.setproduct_id(rs.getString("ID_P"));
+//						producto.setStock(rs.getInt("STOCK"));
+//						productos.put(producto.getproduct_name(), producto);
+//					}
+//					rs.close();
+//					stmt.close();
+//					con.close();
+//				} catch (SQLException e) {
+//					System.out.println("Error de SQL");
+//					e.printStackTrace();
+//				}
+//				return productos;
+//
+//			}	
 
 
-			stmt.close();
-			stmt.close();
-			con.close();
+			public boolean modificarPrecio(Product producto) { //MODIFICAR
+				// TODO Auto-generated method stub
+				boolean ok=false;
 
-		} catch (SQLException e) {
-			System.out.println(e);
+				this.openConnection();
+				try {
+					// Preparamos la sentencia stmt con la conexion y sentencia sql correspondiente
+
+					stmt = con.prepareStatement(SQLDUpdateProduct);
+					stmt.setString(2, producto.getproduct_id());
+					stmt.setDouble(1, producto.getprice());
+					if (stmt.executeUpdate()>0) {
+						ok=true;
+					}
+					stmt.close();
+					con.close();
+				} catch (SQLException e) {
+					System.out.println("Error al verificar credenciales: " + e.getMessage());
+
+				}
+				return ok;						
+			}
+
+			public boolean deleteProduct (String producto) {
+				// Abrimos la conexion
+				boolean existe=false;
+				this.openConnection();
+
+				try {
+					stmt = con.prepareStatement(SQLDELETEPRODUCT);
+					stmt.setString(1, producto);
+					if(stmt.executeUpdate()>0) {
+						existe=true;
+					}
+
+
+
+					stmt.close();
+					stmt.close();
+					con.close();
+
+				} catch (SQLException e) {
+					System.out.println(e);
+
+				}
+				return existe;						
+			}
+
+			public boolean borrarProducto(Product producto) {
+				// TODO Auto-generated method stub
+				boolean ok=false;
+
+				this.openConnection();
+				try {
+					// Preparamos la sentencia stmt con la conexion y sentencia sql correspondiente
+
+					stmt = con.prepareStatement(SQLDeleteProduct);
+					stmt.setString(1, producto.getproduct_id());
+					if (stmt.executeUpdate()>0) {
+						ok=true;
+					}
+					stmt.close();
+					con.close();
+				} catch (SQLException e) {
+					System.out.println("Error al verificar credenciales: " + e.getMessage());
+				}
+
+				return ok;			
+
+			}
+
+
 		}
 
-		return existe;	
-	}
-}
 
 
 
