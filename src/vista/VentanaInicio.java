@@ -14,7 +14,12 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import java.awt.Color;
+import javax.swing.border.LineBorder;
+import javax.swing.SwingConstants;
 
 public class VentanaInicio extends JFrame implements ActionListener{
 
@@ -25,34 +30,49 @@ public class VentanaInicio extends JFrame implements ActionListener{
 	private LoginControlador cont;
 
 
-
 	public VentanaInicio(LoginControlador cont) {
 		this.cont=cont;
 		setTitle("Pagina Inicio");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 517, 463);
+		setBounds(0, 0, 613, 495);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setForeground(new Color(255, 111, 111));
+		contentPane.setBorder(new LineBorder(new Color(189, 0, 0), 15));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		TextLabel1 = new JLabel("Choose the type of user you will log with");
-		TextLabel1.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		TextLabel1.setBounds(88, 29, 306, 45);
+		
+		
+		TextLabel1 = new JLabel("<html>Choose the type of user you will <br><div style=\"text-align: center;\"> log with!!</div></html>");
+		TextLabel1.setForeground(new Color(0, 0, 0));
+		TextLabel1.setHorizontalAlignment(SwingConstants.CENTER);
+		TextLabel1.setFont(new Font("Baskerville Old Face", Font.PLAIN, 24));
+		TextLabel1.setBounds(98, 96, 401, 75);
 		contentPane.add(TextLabel1);
 		
 		BotonLoginWorker = new JButton("WORKER");
-		BotonLoginWorker.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		BotonLoginWorker.setBounds(113, 116, 258, 78);
+		BotonLoginWorker.setForeground(new Color(0, 0, 0));
+		BotonLoginWorker.setBackground(new Color(255, 0, 0));
+		BotonLoginWorker.setFont(new Font("Baskerville Old Face", Font.BOLD, 20));
+		BotonLoginWorker.setBounds(312, 188, 214, 89 );
 		contentPane.add(BotonLoginWorker);
 		BotonLoginWorker.addActionListener(this);
 		
 		BotonLoginClient = new JButton("CLIENT");
-		BotonLoginClient.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		BotonLoginClient.setBounds(113, 245, 258, 78);
+		BotonLoginClient.setBackground(new Color(255, 0, 0));
+		BotonLoginClient.setForeground(new Color(0, 0, 0));
+		BotonLoginClient.setFont(new Font("Baskerville Old Face", Font.BOLD, 20));
+		BotonLoginClient.setBounds(56, 188, 214, 89);
 		contentPane.add(BotonLoginClient);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(VentanaInicio.class.getResource("/Imagenes/FotoLogo.png")));
+		lblNewLabel.setBounds(167, 273, 265, 175);
+		contentPane.add(lblNewLabel);
 		BotonLoginClient.addActionListener(this);
+		
+		
 	}
 
 	@Override

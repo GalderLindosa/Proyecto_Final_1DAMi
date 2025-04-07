@@ -1,10 +1,12 @@
 package vista;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 import controlador.LoginControlador;
 
@@ -14,6 +16,7 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
 
 public class VentanaLogingClient extends JFrame implements ActionListener{
 
@@ -22,33 +25,44 @@ public class VentanaLogingClient extends JFrame implements ActionListener{
 	private JButton SignUpButton;
 	private JButton SignInButton;
 	private LoginControlador cont;
+	private JLabel lblNewLabel;
 	
 	public VentanaLogingClient(LoginControlador cont) {
 		this.cont=cont;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 530, 390);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new LineBorder(new Color(189, 0, 0), 15));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		QuestionLabel = new JLabel("What do you want to do?");
-		QuestionLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		QuestionLabel.setFont(new Font("Baskerville Old Face", Font.PLAIN, 20));
 		QuestionLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		QuestionLabel.setBounds(95, 50, 261, 29);
+		QuestionLabel.setBounds(130, 88, 261, 29);
 		contentPane.add(QuestionLabel);
 		
-		SignUpButton = new JButton("Sign up");
-		SignUpButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		SignUpButton.setBounds(141, 106, 141, 29);
+		SignUpButton = new JButton("SIGN UP");
+		SignUpButton.setForeground(new Color(0, 0, 0));
+		SignUpButton.setBackground(new Color(255, 0, 0));
+		SignUpButton.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
+		SignUpButton.setBounds(175, 214, 166, 45);
 		contentPane.add(SignUpButton);
 		SignUpButton.addActionListener(this);
 		
-		SignInButton = new JButton("Sign in");
-		SignInButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		SignInButton.setBounds(141, 174, 141, 29);
+		SignInButton = new JButton("SIGN IN\r\n");
+		SignInButton.setForeground(new Color(0, 0, 0));
+		SignInButton.setBackground(new Color(255, 0, 0));
+		SignInButton.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
+		SignInButton.setBounds(175, 127, 166, 45);
 		contentPane.add(SignInButton);
+		
+		lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(VentanaLogingClient.class.getResource("/Imagenes/logotipo-mediamarkt.png")));
+		lblNewLabel.setBounds(191, 27, 347, 37);
+		contentPane.add(lblNewLabel);
 		SignInButton.addActionListener(this);
 	}
 
@@ -67,5 +81,4 @@ public class VentanaLogingClient extends JFrame implements ActionListener{
 			dispose();
 		}
 	}
-
 }
