@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.TreeMap;
 
-public class ImplementacionBD implements UserDAO{
+public class ImplementacionBD implements UsuarioDAO{
 	// Atributos
 	private Connection con;
 	private PreparedStatement stmt;
@@ -28,11 +28,10 @@ public class ImplementacionBD implements UserDAO{
 	final String sql1 = "SELECT * FROM workers WHERE id_w = ? AND password_w = ?"; 
 	final String SQLDUpdateProduct = "UPDATE products SET prize =? WHERE id_p =?"; //ModificarProducto 
 
-	final String sqlInsertClient = "INSERT INTO CLIENTS VALUES (?,?,?)";
+	final String sqlInsertClient = "INSERT INTO CLIENTS (NAME_C, PASSWORD_C) VALUES (?,?)";
 	final String sqlInsertProduct = "INSERT INTO PRODUCTS VALUES (?,?,?,?,?)";
 	final String SQLCONSULTA = "SELECT * FROM products";
 	final String SQLDELETEPRODUCT = "DELETE FROM products WHERE id_p=?";
-	final String SQLMODIFICAR = "UPDATE usuario SET contrasena=? WHERE nombre=?";
 
 	// Para la conexi n utilizamos un fichero de configuaraci n, config que
 	// guardamos en el paquete control:
@@ -55,7 +54,7 @@ public class ImplementacionBD implements UserDAO{
 		}
 	}
 
-	public boolean comprobarCliente(Client client){
+	public boolean comprobarCliente(Client client){ //Client's login method
 		// Abrimos la conexion
 		boolean existe=false;
 		this.openConnection();
@@ -78,12 +77,10 @@ public class ImplementacionBD implements UserDAO{
 		return existe;
 	}
 
-	public boolean comprobarTrabajador(Worker worker){
+	public boolean comprobarTrabajador(Worker worker){ // Worker's login method
 		// Abrimos la conexion
 		boolean existe=false;
 		this.openConnection();
-
-
 		try {
 			stmt = con.prepareStatement(sql1);
 			stmt.setString(1, worker.getId_trabajador());
@@ -94,8 +91,6 @@ public class ImplementacionBD implements UserDAO{
 			if (resultado.next()) {
 				existe = true;
 			}
-
-
 			resultado.close();
 			stmt.close();
 			con.close();
@@ -103,51 +98,21 @@ public class ImplementacionBD implements UserDAO{
 		} catch (SQLException e) {
 			System.out.println("Error al verificar credenciales: " + e.getMessage());
 		}
-
 		return existe;
 	}
 
-	public boolean checkClient2(Client client){
-		// Abrimos la conexion
-		boolean existe=false;
-		this.openConnection();
-
-
-		try {
-			stmt = con.prepareStatement(sql1);
-			stmt.setInt(1, client.getclient_id());
-			ResultSet resultado = stmt.executeQuery();
-
-			//Si hay un resultado, el usuario existe
-			if (resultado.next()) {
-				existe = true;
-			}
-
-
-			resultado.close();
-			stmt.close();
-			con.close();
-
-		} catch (SQLException e) {
-			System.out.println("Error al verificar credenciales: " + e.getMessage());
-		}
-
-		return existe;
-	}
-
-	public boolean insertClient(Client client) { //añadirTrabajador (1)
+	public boolean insertClient(Client client) { //Add client 
 		// TODO Auto-generated method stub
 		boolean ok=false;
-		if (!checkClient2(client))
-		{
+
+		
 			this.openConnection();
 			try {
 				// Preparamos la sentencia stmt con la conexion y sentencia sql correspondiente
 
 				stmt = con.prepareStatement(sqlInsertClient);
-				stmt.setInt(1, client.getclient_id());
-				stmt.setString(2, client.getclient_name());
-				stmt.setString(3, client.getclient_password());
+				stmt.setString(1, client.getclient_name());
+				stmt.setString(2, client.getclient_password());
 				if (stmt.executeUpdate()>0) {
 					ok=true;
 				}
@@ -157,12 +122,12 @@ public class ImplementacionBD implements UserDAO{
 			} catch (SQLException e) {
 				System.out.println("Error al verificar credenciales: " + e.getMessage());
 			}
-		}
+		
 		return ok;
 
 	}
 	
-	public boolean insertProduct(Product producto) { //añadirTrabajador (1)
+	public boolean insertProduct(Product producto) { //Add product 
 		// TODO Auto-generated method stub
 		boolean ok=false;
 		
