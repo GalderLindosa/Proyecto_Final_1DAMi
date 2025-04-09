@@ -4,9 +4,7 @@ import modelo.ImplementacionBD;
 import modelo.Product;
 import modelo.UsuarioDAO;
 import modelo.Worker;
-import vista.VentanaInicio;
-import vista.VentanaLogingClient;
-import vista.VentanaLogingWorker;
+import vista.StartWindow;
 import modelo.Client;
 
 import java.awt.event.ActionEvent;
@@ -17,7 +15,7 @@ public class LoginControlador {
 	UsuarioDAO dao = new ImplementacionBD();
 	
 	public void visualizarPantalla() {
-		VentanaInicio ven = new VentanaInicio(this);
+		StartWindow ven = new StartWindow(this);
 		ven.setVisible(true);	
 	}
 	

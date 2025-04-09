@@ -29,7 +29,6 @@ public class ClientOptions extends JDialog implements ActionListener {
 	private JLabel ClientWelcomeLabel;
 	private Map<String, Product> mapa;
 	private LoginControlador cont;
-	private JButton ShowProductsInfo;
 	int id;
 
 	public ClientOptions(LoginControlador cont) {
@@ -59,20 +58,11 @@ public class ClientOptions extends JDialog implements ActionListener {
 		ClientWelcomeLabel.setBounds(35, 10, 376, 52);
 		contentPanel.add(ClientWelcomeLabel);
 
-		ShowProductsInfo = new JButton("Mostrar informacion del producto");
-		ShowProductsInfo.setBounds(10, 167, 184, 37);
-		contentPanel.add(ShowProductsInfo);
-		ShowProductsInfo.addActionListener(this);
-
 	}
 
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		if(e.getSource()==ShowProductsInfo) {
-			JOptionPane.showMessageDialog(this,(String) "" ,"Informacion del producto",JOptionPane.INFORMATION_MESSAGE,null);
-		}
 	}
 
 	public void cargarProd() {

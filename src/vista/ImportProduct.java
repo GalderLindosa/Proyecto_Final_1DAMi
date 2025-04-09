@@ -53,7 +53,7 @@ public class ImportProduct extends JDialog implements ActionListener{
 		setIconImage(Toolkit.getDefaultToolkit().getImage(ImportProduct.class.getResource("/images/media-markt-1.png")));
 		this.cont=cont;
 		setModal(rootPaneCheckingEnabled);
-		setBounds(100, 100, 450, 475);
+		setBounds(100, 100, 450, 523);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -157,7 +157,7 @@ public class ImportProduct extends JDialog implements ActionListener{
 
 	public Product_Category SetEnum() {
 
-		if(ProductCategory.getSelectedItem().toString()=="HOMEAPPLIANCES") {
+		if(ProductCategory.getSelectedItem().toString().equalsIgnoreCase("HOMEAPPLIANCES")) {
 			categoria= Product_Category.HOMEAPPLIANCES;
 		}
 		if(ProductCategory.getSelectedItem().toString().equalsIgnoreCase("COMPUTING")) {
