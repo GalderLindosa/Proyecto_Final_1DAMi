@@ -5,6 +5,7 @@ import modelo.Product;
 import modelo.UsuarioDAO;
 import modelo.Worker;
 import vista.StartWindow;
+import modelo.Buys;
 import modelo.Client;
 
 import java.awt.event.ActionEvent;
@@ -41,5 +42,8 @@ public class LoginControlador {
 	}
 	public boolean insertProduct(Product producto) {
 		return dao.insertProduct(producto);
+	}
+	public boolean buyProduct(Buys buy) {
+		return dao.buyProduct(buy);
 	}
 }

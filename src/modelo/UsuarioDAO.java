@@ -12,4 +12,5 @@ public interface UsuarioDAO {
 	public boolean modificarPrecio(Product producto);
 	public boolean deleteProduct (String string);
 	public boolean insertProduct(Product producto);
+	public boolean buyProduct(Buys buy);
 }

@@ -27,7 +27,8 @@ public class ImplementacionBD implements UsuarioDAO{
 	final String SQL = "SELECT * FROM clients WHERE ID_C = ? AND PASSWORD_C = ?";		
 	final String sql1 = "SELECT * FROM workers WHERE id_w = ? AND password_w = ?"; 
 	final String SQLDUpdateProduct = "UPDATE products SET prize =? WHERE id_p =?"; //ModificarProducto 
-
+	final String SQLBuy = "CALL UpdateStock(?, ?, ?);";
+	
 	final String sqlInsertClient = "INSERT INTO CLIENTS (NAME_C, PASSWORD_C) VALUES (?,?)";
 	final String sqlInsertProduct = "INSERT INTO PRODUCTS VALUES (?,?,?,?,?)";
 	final String SQLCONSULTA = "SELECT * FROM products";
@@ -210,6 +211,26 @@ public class ImplementacionBD implements UsuarioDAO{
 		return ok;						
 	}
 
+	public boolean buyProduct(Buys buy) {
+		boolean ok=false;
+		this.openConnection();
+		try {
+			// Preparamos la sentencia stmt con la conexion y sentencia sql correspondiente
+			stmt = con.prepareStatement(SQLBuy);
+			stmt.setInt(2, buy.getAmount());
+			stmt.setString(1, buy.getProduct_ID());
+			stmt.setInt(3, buy.getClient_id());
+			if (stmt.executeUpdate()>0) {
+				ok=true;
+			}
+			stmt.close();
+			con.close();
+		} catch (SQLException e) {
+			System.out.println("Error al verificar credenciales: " + e.getMessage());
+		}
+		return ok;						
+	}
+	
 	public boolean deleteProduct (String producto) {
 		// Abrimos la conexion
 		boolean existe=false;

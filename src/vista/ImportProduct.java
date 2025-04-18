@@ -25,7 +25,6 @@ import javax.swing.JComboBox;
 import java.awt.Toolkit;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.SpinnerNumberModel;
-import javax.swing.JScrollBar;
 
 public class ImportProduct extends JDialog implements ActionListener{
 
@@ -48,12 +47,11 @@ public class ImportProduct extends JDialog implements ActionListener{
 	private JLabel Importedlabel;
 
 	public ImportProduct(LoginControlador cont) {
-		setTitle("Product import page");
 		setModal(rootPaneCheckingEnabled);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(ImportProduct.class.getResource("/images/media-markt-1.png")));
 		this.cont=cont;
 		setModal(rootPaneCheckingEnabled);
-		setBounds(100, 100, 450, 523);
+		setBounds(100, 100, 450, 522);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -118,6 +116,7 @@ public class ImportProduct extends JDialog implements ActionListener{
 		contentPanel.add(PriceSpinner);
 
 		StockSpinner = new JSpinner();
+		StockSpinner.setModel(new SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
 		StockSpinner.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		StockSpinner.setBounds(234, 281, 65, 28);
 		contentPanel.add(StockSpinner);
@@ -132,13 +131,13 @@ public class ImportProduct extends JDialog implements ActionListener{
 		AddButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		AddButton.setBounds(129, 401, 162, 28);
 		contentPanel.add(AddButton);
-		AddButton.addActionListener(this);
-
+		
 		Importedlabel = new JLabel("");
 		Importedlabel.setHorizontalAlignment(SwingConstants.CENTER);
 		Importedlabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		Importedlabel.setBounds(25, 439, 368, 36);
 		contentPanel.add(Importedlabel);
+		AddButton.addActionListener(this);
 	}
 
 	@Override
@@ -157,7 +156,7 @@ public class ImportProduct extends JDialog implements ActionListener{
 
 	public Product_Category SetEnum() {
 
-		if(ProductCategory.getSelectedItem().toString().equalsIgnoreCase("HOMEAPPLIANCES")) {
+		if(ProductCategory.getSelectedItem().toString()=="HOMEAPPLIANCES") {
 			categoria= Product_Category.HOMEAPPLIANCES;
 		}
 		if(ProductCategory.getSelectedItem().toString().equalsIgnoreCase("COMPUTING")) {

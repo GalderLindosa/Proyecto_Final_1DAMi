@@ -29,7 +29,8 @@ public class ClientOptions extends JDialog implements ActionListener {
 	private JLabel ClientWelcomeLabel;
 	private Map<String, Product> mapa;
 	private LoginControlador cont;
-	int id;
+	private JButton BuyProductButton;
+
 
 	public ClientOptions(LoginControlador cont) {
 		setModal(rootPaneCheckingEnabled);
@@ -37,7 +38,6 @@ public class ClientOptions extends JDialog implements ActionListener {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(ClientOptions.class.getResource("/images/media-markt-1.png")));
 		setTitle("Clients options");
 		this.cont=cont;
-		this.id=id;
 		this.mapa=cont.MostrarProducto();
 
 		setBounds(100, 100, 450, 300);
@@ -57,12 +57,23 @@ public class ClientOptions extends JDialog implements ActionListener {
 		ClientWelcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		ClientWelcomeLabel.setBounds(35, 10, 376, 52);
 		contentPanel.add(ClientWelcomeLabel);
-
+		
+		BuyProductButton = new JButton("New button");
+		BuyProductButton.setBounds(136, 153, 166, 36);
+		contentPanel.add(BuyProductButton);
+		BuyProductButton.addActionListener(this);
 	}
 
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
+		if(e.getSource()==BuyProductButton) {
+			BuyProducts v= new BuyProducts(cont);
+			v.setVisible(true);
+			dispose();
+		}
+		
 	}
 
 	public void cargarProd() {
