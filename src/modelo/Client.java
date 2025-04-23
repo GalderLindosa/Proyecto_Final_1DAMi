@@ -16,6 +16,7 @@ public class Client {
 	}
 
 	public Client () {
+		this.client_name="";
 		this.client_password="";
 		this.client_id=0;
 	}

@@ -78,7 +78,7 @@ public class BuyProducts extends JDialog implements ActionListener{
 		contentPanel.add(buyingbutton);
 		buyingbutton.addActionListener(this);
 		
-		message = new JLabel("New label");
+		message = new JLabel();
 		message.setHorizontalAlignment(SwingConstants.CENTER);
 		message.setBounds(74, 220, 269, 33);
 		contentPanel.add(message);
