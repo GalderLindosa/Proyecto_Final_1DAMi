@@ -1,12 +1,14 @@
 package vista;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 import controlador.LoginControlador;
 import modelo.Product;
@@ -54,47 +56,49 @@ public class ImportProduct extends JDialog implements ActionListener{
 		setBounds(100, 100, 450, 522);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPanel.setBorder(new LineBorder(new Color(189, 0, 0), 15));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+	
 		{
 			NameLabel = new JLabel("Name");
 			NameLabel.setHorizontalAlignment(SwingConstants.CENTER);
-			NameLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			NameLabel.setFont(new Font("Baskerville Old Face", Font.PLAIN, 15));
 			NameLabel.setBounds(39, 139, 136, 28);
 			contentPanel.add(NameLabel);
 		}
 		{
 			IDLabel = new JLabel("ID");
 			IDLabel.setHorizontalAlignment(SwingConstants.CENTER);
-			IDLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			IDLabel.setFont(new Font("Baskerville Old Face", Font.PLAIN, 15));
 			IDLabel.setBounds(39, 71, 136, 28);
 			contentPanel.add(IDLabel);
 		}
 		{
 			PriceLabel = new JLabel("Price");
 			PriceLabel.setHorizontalAlignment(SwingConstants.CENTER);
-			PriceLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			PriceLabel.setFont(new Font("Baskerville Old Face", Font.PLAIN, 15));
 			PriceLabel.setBounds(39, 202, 136, 28);
 			contentPanel.add(PriceLabel);
 		}
 		{
 			StockLabel = new JLabel("Stock");
 			StockLabel.setHorizontalAlignment(SwingConstants.CENTER);
-			StockLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			StockLabel.setFont(new Font("Baskerville Old Face", Font.PLAIN, 15));
 			StockLabel.setBounds(39, 280, 136, 28);
 			contentPanel.add(StockLabel);
 		}
 		{
 			CategoryLabel = new JLabel("Category");
 			CategoryLabel.setHorizontalAlignment(SwingConstants.CENTER);
-			CategoryLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			CategoryLabel.setFont(new Font("Baskerville Old Face", Font.PLAIN, 15));
 			CategoryLabel.setBounds(39, 344, 136, 28);
 			contentPanel.add(CategoryLabel);
 		}
 		{
 			WelcomeLabel = new JLabel("Introduce the product info");
 			WelcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
-			WelcomeLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			WelcomeLabel.setFont(new Font("Baskerville Old Face", Font.PLAIN, 15));
 			WelcomeLabel.setBounds(63, 22, 296, 28);
 			contentPanel.add(WelcomeLabel);
 		}
@@ -111,13 +115,13 @@ public class ImportProduct extends JDialog implements ActionListener{
 
 		PriceSpinner = new JSpinner();
 		PriceSpinner.setModel(new SpinnerNumberModel(Double.valueOf(0), Double.valueOf(0), null, Double.valueOf(5)));
-		PriceSpinner.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		PriceSpinner.setFont(new Font("Baskerville Old Face", Font.PLAIN, 15));
 		PriceSpinner.setBounds(234, 203, 65, 28);
 		contentPanel.add(PriceSpinner);
 
 		StockSpinner = new JSpinner();
 		StockSpinner.setModel(new SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
-		StockSpinner.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		StockSpinner.setFont(new Font("Baskerville Old Face", Font.PLAIN, 15));
 		StockSpinner.setBounds(234, 281, 65, 28);
 		contentPanel.add(StockSpinner);
 
@@ -128,13 +132,14 @@ public class ImportProduct extends JDialog implements ActionListener{
 		contentPanel.add(ProductCategory);
 
 		AddButton = new JButton("Add product");
-		AddButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		AddButton.setBackground(new Color(255, 0, 0));
+		AddButton.setFont(new Font("Baskerville Old Face", Font.PLAIN, 13));
 		AddButton.setBounds(129, 401, 162, 28);
 		contentPanel.add(AddButton);
 		
 		Importedlabel = new JLabel("");
 		Importedlabel.setHorizontalAlignment(SwingConstants.CENTER);
-		Importedlabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		Importedlabel.setFont(new Font("Baskerville Old Face", Font.PLAIN, 11));
 		Importedlabel.setBounds(25, 439, 368, 36);
 		contentPanel.add(Importedlabel);
 		AddButton.addActionListener(this);

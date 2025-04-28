@@ -1,12 +1,14 @@
 package vista;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 import controlador.LoginControlador;
 import modelo.Client;
@@ -43,23 +45,25 @@ public class ClientOptions extends JDialog implements ActionListener {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPanel.setBorder(new LineBorder(new Color(189, 0, 0), 15));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 
 		ProductComboBox = new JComboBox <String> ();
-		ProductComboBox.setBounds(10, 100, 416, 21);
+		ProductComboBox.setBounds(41, 91, 353, 21);
 		contentPanel.add(ProductComboBox);
 		cargarProd();
 
 		ClientWelcomeLabel = new JLabel();
-		ClientWelcomeLabel.setText("BIENVENIDO/A!");
-		ClientWelcomeLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		ClientWelcomeLabel.setText("WELLCOME!");
+		ClientWelcomeLabel.setFont(new Font("Baskerville Old Face", Font.PLAIN, 15));
 		ClientWelcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		ClientWelcomeLabel.setBounds(35, 10, 376, 52);
+		ClientWelcomeLabel.setBounds(30, 29, 376, 52);
 		contentPanel.add(ClientWelcomeLabel);
 		
-		BuyProductButton = new JButton("New button");
-		BuyProductButton.setBounds(136, 153, 166, 36);
+		BuyProductButton = new JButton("SELECT");
+		BuyProductButton.setBackground(new Color(255, 0, 0));
+		BuyProductButton.setBounds(136, 136, 166, 36);
 		contentPanel.add(BuyProductButton);
 		BuyProductButton.addActionListener(this);
 	}

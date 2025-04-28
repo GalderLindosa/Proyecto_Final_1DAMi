@@ -1,5 +1,6 @@
 package vista;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,6 +8,7 @@ import controlador.LoginControlador;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 import modelo.Client;
 import modelo.Worker;
@@ -40,12 +42,14 @@ public class WorkerLoginWindow extends JFrame implements ActionListener{
 		setBounds(100, 100, 511, 452);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new LineBorder(new Color(189, 0, 0), 15));
+
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		WelcomeLabel = new JLabel("Welcome to the workers Login");
-		WelcomeLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		WelcomeLabel.setFont(new Font("Baskerville Old Face", Font.PLAIN, 20));
 		WelcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		WelcomeLabel.setBounds(59, 26, 387, 57);
 		contentPane.add(WelcomeLabel);
@@ -53,28 +57,29 @@ public class WorkerLoginWindow extends JFrame implements ActionListener{
 		workersIDlabel = new JLabel("Introduce your worker's ID");
 		workersIDlabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		workersIDlabel.setHorizontalAlignment(SwingConstants.CENTER);
-		workersIDlabel.setBounds(139, 93, 198, 40);
+		workersIDlabel.setBounds(149, 93, 198, 40);
 		contentPane.add(workersIDlabel);
 		
 		WorkerIDtextField = new JTextField();
-		WorkerIDtextField.setBounds(139, 143, 198, 28);
+		WorkerIDtextField.setBounds(149, 143, 198, 28);
 		contentPane.add(WorkerIDtextField);
 		WorkerIDtextField.setColumns(10);
 		
 		WorkerPasswordLabel = new JLabel("Introduce your password");
 		WorkerPasswordLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		WorkerPasswordLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		WorkerPasswordLabel.setBounds(147, 192, 190, 40);
+		WorkerPasswordLabel.setBounds(153, 192, 190, 40);
 		contentPane.add(WorkerPasswordLabel);
 		
 		LoginButton = new JButton("Log in");
+		LoginButton.setBackground(new Color(255, 0, 0));
 		LoginButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		LoginButton.setBounds(154, 298, 171, 28);
+		LoginButton.setBounds(163, 298, 171, 28);
 		contentPane.add(LoginButton);
 		LoginButton.addActionListener(this);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(139, 242, 198, 28);
+		passwordField.setBounds(149, 242, 198, 28);
 		contentPane.add(passwordField);
 		
 		LoginErrorLabel = new JLabel("");

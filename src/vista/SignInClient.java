@@ -1,10 +1,12 @@
 package vista;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -40,46 +42,49 @@ public class SignInClient extends JFrame implements ActionListener{
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new LineBorder(new Color(189, 0, 0), 15));
+
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		SignInLabel = new JLabel("Sign In");
-		SignInLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		SignInLabel.setFont(new Font("Baskerville Old Face", Font.PLAIN, 15));
 		SignInLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		SignInLabel.setBounds(132, 22, 163, 28);
 		contentPane.add(SignInLabel);
 
 		WriteIDLabel = new JLabel("Introduce your client ID");
-		WriteIDLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		WriteIDLabel.setFont(new Font("Baskerville Old Face", Font.PLAIN, 15));
 		WriteIDLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		WriteIDLabel.setBounds(30, 60, 176, 32);
 		contentPane.add(WriteIDLabel);
 
 		WritePasswordLabel = new JLabel("Introduce your password");
-		WritePasswordLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		WritePasswordLabel.setFont(new Font("Baskerville Old Face", Font.PLAIN, 15));
 		WritePasswordLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		WritePasswordLabel.setBounds(21, 114, 201, 32);
 		contentPane.add(WritePasswordLabel);
 
 		IDField = new JTextField();
-		IDField.setBounds(266, 69, 96, 19);
+		IDField.setBounds(247, 67, 96, 19);
 		contentPane.add(IDField);
 		IDField.setColumns(10);
 
 		SignInClient = new JButton("Sign In");
-		SignInClient.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		SignInClient.setBackground(new Color(255, 0, 0));
+		SignInClient.setFont(new Font("Baskerville Old Face", Font.PLAIN, 13));
 		SignInClient.setBounds(146, 169, 136, 32);
 		contentPane.add(SignInClient);
 		SignInClient.addActionListener(this);
 
 		ClientPasswordField = new JPasswordField();
-		ClientPasswordField.setBounds(266, 123, 96, 19);
+		ClientPasswordField.setBounds(247, 121, 96, 19);
 		contentPane.add(ClientPasswordField);
 		
 		LoginErrorLabel = new JLabel("");
 		LoginErrorLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		LoginErrorLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		LoginErrorLabel.setFont(new Font("Baskerville Old Face", Font.PLAIN, 12));
 		LoginErrorLabel.setBounds(21, 211, 405, 28);
 		contentPane.add(LoginErrorLabel);
 	}

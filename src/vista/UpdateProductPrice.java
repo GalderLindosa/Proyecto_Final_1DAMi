@@ -1,6 +1,7 @@
 package vista;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
@@ -8,6 +9,7 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 import controlador.LoginControlador;
 import modelo.Product;
@@ -48,30 +50,33 @@ public class UpdateProductPrice extends JDialog implements ActionListener{
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+		contentPanel.setBorder(new LineBorder(new Color(189, 0, 0), 15));
+
 		
 		Update_lable = new JLabel("Enter the new product price");
-		Update_lable.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		Update_lable.setFont(new Font("Baskerville Old Face", Font.PLAIN, 16));
 		Update_lable.setHorizontalAlignment(SwingConstants.CENTER);
-		Update_lable.setBounds(10, 195, 230, 35);
+		Update_lable.setBounds(23, 195, 230, 35);
 		contentPanel.add(Update_lable);
 		
 		Update_button = new JButton("UPDATE");
-		Update_button.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		Update_button.setBounds(183, 254, 156, 35);
+		Update_button.setBackground(new Color(255, 0, 0));
+		Update_button.setFont(new Font("Baskerville Old Face", Font.PLAIN, 15));
+		Update_button.setBounds(202, 254, 156, 35);
 		contentPanel.add(Update_button);
 		Update_button.addActionListener(this);
 		
 		
 		PriceUpdatedLabel = new JLabel("");
-		PriceUpdatedLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		PriceUpdatedLabel.setFont(new Font("Baskerville Old Face", Font.PLAIN, 13));
 		PriceUpdatedLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		PriceUpdatedLabel.setBounds(59, 299, 418, 40);
 		contentPanel.add(PriceUpdatedLabel);
 		
 		ProductIDLabel = new JLabel("Enter the product ID");
 		ProductIDLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		ProductIDLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		ProductIDLabel.setBounds(10, 120, 217, 35);
+		ProductIDLabel.setFont(new Font("Baskerville Old Face", Font.PLAIN, 16));
+		ProductIDLabel.setBounds(23, 120, 217, 35);
 		contentPanel.add(ProductIDLabel);
 		
 		ProductIDTextFIeld = new JTextField();
@@ -81,14 +86,14 @@ public class UpdateProductPrice extends JDialog implements ActionListener{
 		
 		UpdateSpinner = new JSpinner();
 		UpdateSpinner.setModel(new SpinnerNumberModel(0.0, 0.0, 100000.0, 10.0));
-		UpdateSpinner.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		UpdateSpinner.setBounds(240, 199, 77, 27);
+		UpdateSpinner.setFont(new Font("Baskerville Old Face", Font.PLAIN, 15));
+		UpdateSpinner.setBounds(263, 199, 77, 27);
 		contentPanel.add(UpdateSpinner);
 		
 		ProductUpdateWindow = new JLabel("Welcome to the product price update");
 		ProductUpdateWindow.setHorizontalAlignment(SwingConstants.CENTER);
-		ProductUpdateWindow.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		ProductUpdateWindow.setBounds(46, 23, 477, 43);
+		ProductUpdateWindow.setFont(new Font("Baskerville Old Face", Font.PLAIN, 25));
+		ProductUpdateWindow.setBounds(41, 46, 477, 43);
 		contentPanel.add(ProductUpdateWindow);
 	}
 

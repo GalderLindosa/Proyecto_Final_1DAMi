@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 import controlador.LoginControlador;
 import modelo.Buys;
@@ -43,14 +44,15 @@ public class BuyProducts extends JDialog implements ActionListener{
 		this.setModal(rootPaneCheckingEnabled);	
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPanel.setBorder(new LineBorder(new Color(189, 0, 0), 15));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
 		Welcome = new JLabel("Introduce your client ID and the product ID");
-		Welcome.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		Welcome.setFont(new Font("Baskerville Old Face", Font.PLAIN, 14));
 		Welcome.setBackground(new Color(240, 240, 240));
 		Welcome.setHorizontalAlignment(SwingConstants.CENTER);
-		Welcome.setBounds(10, 10, 416, 33);
+		Welcome.setBounds(10, 28, 416, 33);
 		contentPanel.add(Welcome);
 		
 		productTextField = new JTextField();
@@ -74,6 +76,7 @@ public class BuyProducts extends JDialog implements ActionListener{
 		contentPanel.add(ClientTextField);
 		
 		buyingbutton = new JButton("Buy product");
+		buyingbutton.setBackground(new Color(255, 0, 0));
 		buyingbutton.setBounds(152, 190, 132, 21);
 		contentPanel.add(buyingbutton);
 		buyingbutton.addActionListener(this);

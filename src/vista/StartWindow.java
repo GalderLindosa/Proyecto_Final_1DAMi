@@ -1,11 +1,13 @@
 package vista;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 import controlador.LoginControlador;
 
@@ -41,40 +43,51 @@ public class StartWindow extends JFrame implements ActionListener{
 		setBounds(100, 100, 517, 463);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new LineBorder(new Color(189, 0, 0), 15));
+
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		IntroLabel = new JLabel("Choose the type of user you will log with");
+		IntroLabel = new JLabel("<html>Choose the type of user you will <br><div style=\"text-align: center;\"> log with!!</div></html>");
+		IntroLabel.setForeground(new Color(0, 0, 0));
 		IntroLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		IntroLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		IntroLabel.setBounds(61, 52, 390, 45);
+		IntroLabel.setFont(new Font("Baskerville Old Face", Font.PLAIN, 24));
+		IntroLabel.setBounds(51, 21, 401, 75);
 		contentPane.add(IntroLabel);
 
 		BotonLoginWorker = new JButton("WORKER");
-		BotonLoginWorker.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		BotonLoginWorker.setBounds(110, 166, 258, 78);
+		BotonLoginWorker.setForeground(new Color(0, 0, 0));
+		BotonLoginWorker.setBackground(new Color(255, 0, 0));
+		BotonLoginWorker.setFont(new Font("Baskerville Old Face", Font.BOLD, 20));
+		BotonLoginWorker.setBounds(115, 93, 270, 89 );
 		contentPane.add(BotonLoginWorker);
 		BotonLoginWorker.addActionListener(this);
 
 		BotonLoginClient = new JButton("CLIENT");
-		BotonLoginClient.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		BotonLoginClient.setBounds(110, 286, 258, 78);
+		BotonLoginClient.setBackground(new Color(255, 0, 0));
+		BotonLoginClient.setForeground(new Color(0, 0, 0));
+		BotonLoginClient.setFont(new Font("Baskerville Old Face", Font.BOLD, 20));
+		BotonLoginClient.setBounds(115, 192, 270, 89);
 		contentPane.add(BotonLoginClient);
-		BotonLoginClient.addActionListener(this);
 
 		InfoButtonWorker = new JButton("");
 		InfoButtonWorker.setIcon(new ImageIcon(StartWindow.class.getResource("/images/info.png")));
-		InfoButtonWorker.setBounds(378, 132, 40, 40);
+		InfoButtonWorker.setBounds(412, 84, 40, 40);
 		contentPane.add(InfoButtonWorker);
 		InfoButtonWorker.addActionListener(this);
 
 		InfoButtonClient = new JButton("");
 		InfoButtonClient.setIcon(new ImageIcon(StartWindow.class.getResource("/images/info.png")));
-		InfoButtonClient.setBounds(375, 250, 40, 40);
+		InfoButtonClient.setBounds(412, 192, 40, 40);
 		contentPane.add(InfoButtonClient);
 		InfoButtonClient.addActionListener(this);
-
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(StartWindow.class.getResource("/images/FotoLogo.png")));
+		lblNewLabel.setBounds(-30, 260, 281, 166);
+		contentPane.add(lblNewLabel);
+		BotonLoginClient.addActionListener(this);
 
 
 

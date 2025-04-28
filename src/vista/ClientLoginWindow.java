@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 import controlador.LoginControlador;
 
@@ -15,6 +16,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Toolkit;
+import java.awt.Color;
 
 public class ClientLoginWindow extends JFrame implements ActionListener{
 
@@ -33,24 +35,28 @@ public class ClientLoginWindow extends JFrame implements ActionListener{
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new LineBorder(new Color(189, 0, 0), 15));
+
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		QuestionLabel = new JLabel("What do you want to do?");
-		QuestionLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		QuestionLabel.setFont(new Font("Baskerville Old Face", Font.PLAIN, 20));
 		QuestionLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		QuestionLabel.setBounds(95, 50, 261, 29);
 		contentPane.add(QuestionLabel);
 		
 		SignUpButton = new JButton("Sign up");
-		SignUpButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		SignUpButton.setBackground(new Color(255, 0, 0));
+		SignUpButton.setFont(new Font("Baskerville Old Face", Font.PLAIN, 15));
 		SignUpButton.setBounds(141, 106, 141, 29);
 		contentPane.add(SignUpButton);
 		SignUpButton.addActionListener(this);
 		
 		SignInButton = new JButton("Sign in");
-		SignInButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		SignInButton.setBackground(new Color(255, 0, 0));
+		SignInButton.setFont(new Font("Baskerville Old Face", Font.PLAIN, 15));
 		SignInButton.setBounds(141, 174, 141, 29);
 		contentPane.add(SignInButton);
 		SignInButton.addActionListener(this);

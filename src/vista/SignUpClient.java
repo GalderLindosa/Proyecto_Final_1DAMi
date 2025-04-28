@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 import controlador.LoginControlador;
 
@@ -19,6 +20,8 @@ import java.awt.event.ActionListener;
 import modelo.Client;
 import javax.swing.JButton;
 import java.awt.Toolkit;
+import javax.swing.ImageIcon;
+import java.awt.Color;
 
 public class SignUpClient extends JFrame implements ActionListener{
 
@@ -31,6 +34,7 @@ public class SignUpClient extends JFrame implements ActionListener{
 	private JButton CompleteSIgnUpButton;
 	private LoginControlador cont;
 	private JLabel CreatedUserLabel;
+	private JLabel lblNewLabel;
 
 	public SignUpClient(LoginControlador cont) {
 		setTitle("Client Sign Up");
@@ -41,47 +45,55 @@ public class SignUpClient extends JFrame implements ActionListener{
 		setBounds(100, 100, 388, 351);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new LineBorder(new Color(189, 0, 0), 15));
+
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		SignUpWelcome = new JLabel("Welcome to the sign up window");
-		SignUpWelcome.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		SignUpWelcome.setFont(new Font("Baskerville Old Face", Font.PLAIN, 15));
 		SignUpWelcome.setHorizontalAlignment(SwingConstants.CENTER);
-		SignUpWelcome.setBounds(66, 10, 264, 34);
+		SignUpWelcome.setBounds(51, 24, 264, 34);
 		contentPane.add(SignUpWelcome);
 		
 		NameLabel = new JLabel("Introduce your name");
-		NameLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		NameLabel.setBounds(121, 68, 153, 19);
+		NameLabel.setFont(new Font("Baskerville Old Face", Font.PLAIN, 15));
+		NameLabel.setBounds(110, 68, 153, 19);
 		contentPane.add(NameLabel);
 		
 		introduceNameTextField = new JTextField();
-		introduceNameTextField.setBounds(121, 115, 153, 21);
+		introduceNameTextField.setBounds(110, 97, 153, 21);
 		contentPane.add(introduceNameTextField);
 		introduceNameTextField.setColumns(10);
 		
 		PasswordLabel = new JLabel("Introduce your passoword");
-		PasswordLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		PasswordLabel.setFont(new Font("Baskerville Old Face", Font.PLAIN, 15));
 		PasswordLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		PasswordLabel.setBounds(103, 146, 185, 34);
+		PasswordLabel.setBounds(101, 128, 185, 34);
 		contentPane.add(PasswordLabel);
 		
 		IntroducePasswordTextField = new JPasswordField();
-		IntroducePasswordTextField.setBounds(116, 190, 158, 21);
+		IntroducePasswordTextField.setBounds(110, 167, 158, 21);
 		contentPane.add(IntroducePasswordTextField);
 		
 		CompleteSIgnUpButton = new JButton("Complete");
-		CompleteSIgnUpButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		CompleteSIgnUpButton.setBounds(116, 232, 158, 21);
+		CompleteSIgnUpButton.setBackground(new Color(255, 0, 0));
+		CompleteSIgnUpButton.setFont(new Font("Baskerville Old Face", Font.PLAIN, 15));
+		CompleteSIgnUpButton.setBounds(110, 213, 158, 21);
 		contentPane.add(CompleteSIgnUpButton);
 		CompleteSIgnUpButton.addActionListener(this);
 		
 		CreatedUserLabel = new JLabel("");
-		CreatedUserLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		CreatedUserLabel.setFont(new Font("Baskerville Old Face", Font.PLAIN, 13));
 		CreatedUserLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		CreatedUserLabel.setBounds(10, 263, 354, 34);
+		CreatedUserLabel.setBounds(10, 270, 354, 34);
 		contentPane.add(CreatedUserLabel);
+		
+		lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(SignUpClient.class.getResource("/images/Cliente1.png")));
+		lblNewLabel.setBounds(10, 185, 131, 107);
+		contentPane.add(lblNewLabel);
 	}
 
 	@Override
